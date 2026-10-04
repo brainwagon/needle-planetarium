@@ -7,7 +7,7 @@ import { renderSpans, renderCalls, renderSpeed, renderWhy, renderHistory, showLo
 // Weights are pinned to a Hugging Face revision so the demo can't drift under us.
 const NEEDLE3 = "https://huggingface.co/Cactus-Compute/needle3/resolve/c7c415a3d1b3d929014bc6e866d51ebb971f7089/needle3.cact";
 const WHISTLE = "https://huggingface.co/Cactus-Compute/whistle/resolve/b358ddadd89b7a713b5aa131f23032d3cca1b251/whistle.cact";
-const TUNED = new URL("../models/needle3-planetarium.cact", import.meta.url).href;
+const TUNED = "https://huggingface.co/mvandewettering/needle3-planetarium/resolve/8fc6bd97af258907a65cebecf9f95b2211b4d901/needle3-planetarium.cact";
 
 const EXAMPLES = [
   "show me Saturn", "view the sky from Tokyo", "speed up time to an hour per second", "draw Mars's path over 120 days",
@@ -180,6 +180,9 @@ async function main() {
     });
     primary.executed = true;
 
+    $("toolmap-caption").textContent = primary.key === "tuned"
+      ? "Each star is a tool; your command lands among the nearest. The fine-tuned build has no retrieval head, so it chose from all 15 tools — the lines show the 5 the base model would have offered."
+      : "Each star is a tool. Your command lands among them; lines mark the five closest — the only tools the model is allowed to choose from.";
     renderSpans(text, primary.result);
     renderCalls(runs);
     renderSpeed(primary);
@@ -245,9 +248,9 @@ async function main() {
   tunedBtns.forEach((b) => { b.disabled = true; });
   (async () => {
     const head = await fetch(TUNED, { method: "HEAD" }).catch(() => null);
-    if (!head || !head.ok) { status.tuned = "Fine-tuned model not published yet"; paint(); return; }
+    if (!head || !head.ok) { status.tuned = "Fine-tuned model unavailable"; paint(); return; }
     const tuned = new NeedleModel("Tuned", [TUNED], {
-      onProgress: (p) => { status.tuned = progressHtml("Fine-tuned Needle", p); paint(); },
+      onProgress: (p) => { status.tuned = progressHtml("Fine-tuned Needle (63 MB)", p); paint(); },
     });
     await tuned.load();
     status.tuned = "Fine-tuned: indexing tools…"; paint();

@@ -43,10 +43,13 @@ function callMatches(want, got) {
   const oracle = args.includes("--oracle");
   const toolList = JSON.parse(tools);
   const dot = (a, b) => a.reduce((s, x, i) => s + x * b[i], 0);
-  const toolVecs = oracle ? toolList.map((t) => eng.embed(t.description)) : null;
+  // embeddings come from the base model: local fine-tunes ship without the embedding readout
+  const embedder = oracle ? await loadEngine() : null;
+  if (embedder) embedder.load(path.join(VENDOR, "needle3.cact"));
+  const toolVecs = oracle ? toolList.map((t) => embedder.embed(t.description)) : null;
   const subsetFor = (c) => {
     const names = new Set(c.want.map((w) => w.name));
-    const qv = eng.embed(c.q);
+    const qv = embedder.embed(c.q);
     const ranked = toolList.map((t, j) => [t, dot(qv, toolVecs[j])]).sort((a, b) => b[1] - a[1]);
     for (const [t] of ranked) { if (names.size >= 5) break; names.add(t.name); }
     return toolList.filter((t) => names.has(t.name));

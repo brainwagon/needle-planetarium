@@ -1,0 +1,75 @@
+engine + weights ready in 9667 ms; static prefix 1109 tokens
+PASS   677ms conf=0.57  show me Saturn
+      -> show_object({"name":"Saturn"})
+FAIL   739ms conf=0.24  where's Orion?
+      -> (none)  [suppressed: [{"name":"look_toward","arguments":{"direction":"north"}}]]
+PASS  1003ms conf=0.44  take me to the Andromeda galaxy
+      -> show_object({"name":"Andromeda Galaxy"})
+FAIL   652ms conf=0.25  center on M42
+      -> (none)  [suppressed: [{"name":"zoom","arguments":{"direction":"out"}}]]
+PASS   773ms conf=0.40  find Betelgeuse for me
+      -> show_object({"name":"Betelgeuse"})
+FAIL   656ms conf=0.11  track the moon
+      -> set_location({"place":"the moon"})
+FAIL   781ms conf=0.14  keep Jupiter in the middle of the screen
+      -> set_location({"place":"Jupiter"})
+FAIL   920ms conf=0.78  what does the sky look like from Tokyo
+      -> object_info({"name":"Tokyo"})
+PASS   841ms conf=0.54  move me to Sydney Australia
+      -> set_location({"place":"Sydney Australia"})
+FAIL   670ms conf=0.56  go to the south pole
+      -> zoom({"direction":"in"})
+FAIL  1205ms conf=0.03  set the time to midnight on new year's eve 2026
+      -> (none)  [suppressed: [{"name":"set_time_speed","arguments":{"speed":"minute per second","backwards":false}}]]
+PASS   609ms conf=0.59  back to the present
+      -> reset_to_now({})
+PASS   905ms conf=0.60  show the sky on July 4 2027 at 9pm
+      -> set_date_time({"date":"2027-07-04","time":"21:00"})
+PASS   776ms conf=0.71  speed up time to an hour per second
+      -> set_time_speed({"speed":"hour per second"})
+PASS   674ms conf=0.70  pause the clock
+      -> set_time_speed({"speed":"pause"})
+FAIL   686ms conf=0.53  run time backwards a day every second
+      -> reset_to_now({})
+PASS   635ms conf=0.41  zoom in
+      -> zoom({"direction":"in"})
+PASS   781ms conf=0.41  zoom out to see the whole sky
+      -> zoom({"direction":"out"})
+PASS   683ms conf=0.52  give me a binocular view
+      -> set_view({"view":"binoculars"})
+FAIL   584ms conf=0.69  face east
+      -> (none)  [suppressed: [{"name":"zoom","arguments":{"direction":"out"}}]]
+FAIL   768ms conf=0.20  look straight up
+      -> (none)  [suppressed: [{"name":"show_overlay","arguments":{"overlay":"constellation lines"}}]]
+FAIL   821ms conf=0.62  turn on constellation lines
+      -> hide_overlay({"overlay":"constellation lines"})
+PASS   767ms conf=0.62  hide the grid
+      -> hide_overlay({"overlay":"grid"})
+PASS   922ms conf=0.44  get rid of the atmosphere
+      -> hide_overlay({"overlay":"atmosphere"})
+FAIL   694ms conf=0.44  label the stars
+      -> list_visible({"kind":"stars"})
+PASS   832ms conf=0.74  draw Mars's path over the next 90 days
+      -> show_path({"name":"Mars","days":90})
+PASS   730ms conf=0.87  how far away is Vega?
+      -> object_info({"name":"Vega"})
+PASS   704ms conf=0.69  tell me about the Pleiades
+      -> object_info({"name":"Pleiades"})
+FAIL   941ms conf=0.09  when does the moon rise tonight
+      -> (none)  [suppressed: [{"name":"list_visible","arguments":{"kind":"planets","count":1}}]]
+FAIL   800ms conf=0.12  when will Venus set?
+      -> list_visible({"kind":"planets"})
+PASS   762ms conf=0.39  which planets are up right now
+      -> list_visible({"kind":"planets"})
+PASS   892ms conf=0.56  list the five brightest stars visible
+      -> list_visible({"kind":"stars","count":5})
+FAIL   714ms conf=0.62  show me Saturn from Tokyo
+      -> show_object({"name":"Saturn"})
+FAIL  1149ms conf=0.39  turn on constellation names and zoom out
+      -> hide_overlay({"overlay":"constellation names"}) ; zoom({"direction":"out"})
+FAIL   616ms conf=0.65  what's the weather in Paris
+      -> set_location({"place":"Paris"})
+FAIL   684ms conf=0.18  write me a poem about stars
+      -> show_object({"name":"stars"})
+
+18/36 passed; mean latency 779 ms

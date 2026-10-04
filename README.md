@@ -76,6 +76,20 @@ uv venv .venv && uv pip install "cactus-needle[train,gpu]"
 
 Batch 8 at length 768 fits in an 8 GB GPU (batch 16 at the default 1024 does not).
 
+The result is published at
+[mvandewettering/needle3-planetarium](https://huggingface.co/mvandewettering/needle3-planetarium)
+and the site loads it from there:
+
+| Test set | Base Needle 3 | Fine-tuned |
+|---|---|---|
+| `spike/cases3.json` (40, phrasings unseen in training) | 20/40 | 26/40 |
+| `spike/cases2.json` (36, written before the generator) | 18/36 | 31/36 |
+
+Caveats of a local fine-tune: `needle build` drops the calibration head, so the
+tuned model's score is a raw decode probability, and it also loses the
+embedding readout, so it can't narrow 15 tools to 5 by retrieval and sees them
+all. The site uses the base model for the tool-space map.
+
 ## Credits
 
 - Model and engine: [Cactus Needle](https://github.com/cactus-compute/needle), Apache-2.0 (`site/engine/LICENSE-needle`)

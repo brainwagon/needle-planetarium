@@ -51,11 +51,12 @@ function callHtml(c) {
   return `<span class="fn">${esc(c.name)}</span>(${args})`;
 }
 
-function confHtml(conf) {
-  if (conf == null) return `<div class="conf">confidence <span class="muted">— not calibrated for local fine-tunes</span></div>`;
+function confHtml(conf, calibrated = true) {
+  if (conf == null) return `<div class="conf">confidence <span class="muted">— not reported</span></div>`;
   const pct = Math.round(conf * 100);
   const col = conf >= 0.5 ? "var(--ok)" : conf >= 0.1 ? "var(--warn)" : "var(--bad)";
-  return `<div class="conf">confidence <div class="meter" title="Calls under 10% are withheld by the engine"><i style="width:${pct}%;background:${col}"></i><b></b></div> ${pct}%</div>`;
+  const label = calibrated ? "confidence" : `<span title="Local fine-tunes lose Needle's calibration head; this is the raw decode probability">certainty*</span>`;
+  return `<div class="conf">${label} <div class="meter" title="Calls under 10% are withheld by the engine"><i style="width:${pct}%;background:${col}"></i><b></b></div> ${pct}%</div>`;
 }
 
 /** runs: [{label, result, ms, outcomes: [{summary, ok}], executed: bool}] */
@@ -72,7 +73,7 @@ export function renderCalls(runs) {
     const outcomes = (run.outcomes || []).map((o) => `<div class="result ${o.ok ? "" : "bad"}">${esc(o.summary)}</div>`).join("");
     return `<div class="call ${!calls.length && held.length ? "suppressed" : ""}">
       <div class="head"><span class="who">${esc(run.label)}${run.executed ? " · drove the sky" : ""}</span><span class="ms">${run.ms.toFixed(0)} ms</span></div>
-      ${body}${outcomes}${confHtml(r.confidence)}</div>`;
+      ${body}${outcomes}${confHtml(r.confidence, run.key !== "tuned")}</div>`;
   });
   el.className = runs.length > 1 ? "compare" : "";
   el.innerHTML = cards.join("");

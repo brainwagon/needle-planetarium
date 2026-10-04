@@ -1,0 +1,83 @@
+engine + weights ready in 10035 ms; static prefix 1109 tokens
+PASS   534ms conf=0.98  can you bring up Jupiter
+      -> show_object({"name":"Jupiter"})
+PASS   618ms conf=1.00  I want to see the Crab Nebula
+      -> show_object({"name":"the Crab Nebula"})
+FAIL   518ms conf=0.89  where is Polaris
+      -> (none)  [suppressed: [{"name":"look_toward","arguments":{"direction":"north"}}]]
+FAIL   617ms conf=0.85  point the view at Cassiopeia please
+      -> (none)  [suppressed: [{"name":"show_overlay","arguments":{"overlay":"constellation lines"}}]]
+FAIL   461ms conf=0.83  go to M13
+      -> follow_object({"name":"M13"})
+FAIL   747ms conf=0.90  lock onto Mars and follow it
+      -> follow_object({"name":"Mars"}) ; follow_object({"name":"lock onto Mars"})
+PASS   478ms conf=1.00  follow Venus
+      -> follow_object({"name":"Venus"})
+PASS   616ms conf=1.00  I'm in Reykjavik
+      -> set_location({"place":"Reykjavik"})
+PASS   574ms conf=1.00  show the sky over Cape Town
+      -> set_location({"place":"Cape Town"})
+PASS   620ms conf=1.00  change my location to Denver Colorado
+      -> set_location({"place":"Denver Colorado"})
+PASS   821ms conf=0.87  what did the sky look like on March 3 1990 at 8pm
+      -> set_date_time({"date":"1990-03-03","time":"20:00"})
+PASS   817ms conf=0.70  jump to 2030-05-17 at 23:15
+      -> set_date_time({"date":"2030-05-17","time":"23:15"})
+PASS   424ms conf=1.00  return to the current time
+      -> reset_to_now({})
+PASS   633ms conf=1.00  make time go a minute per second
+      -> set_time_speed({"speed":"minute per second"})
+FAIL   471ms conf=0.97  freeze time
+      -> (none)  [suppressed: [{"name":"set_time_speed","arguments":{"speed":"pause"}}]]
+FAIL   456ms conf=0.80  normal speed please
+      -> (none)  [suppressed: [{"name":"set_time_speed","arguments":{"speed":"pause"}}]]
+FAIL   622ms conf=1.00  rewind at an hour per second
+      -> set_time_speed({"speed":"hour per second"})
+FAIL   454ms conf=0.60  closer
+      -> (none)  [suppressed: [{"name":"zoom","arguments":{"direction":"out"}}]]
+FAIL   464ms conf=0.54  pull back a bit
+      -> zoom({"direction":"in"})
+FAIL   467ms conf=1.00  telescope view
+      -> (none)  [suppressed: [{"name":"zoom","arguments":{"direction":"out"}}]]
+FAIL   671ms conf=0.67  show me what I'd see with just my eyes
+      -> list_visible({"kind":"planets"})
+PASS   564ms conf=0.97  turn around and face south
+      -> look_toward({"direction":"south"})
+PASS   661ms conf=0.87  look northwest
+      -> look_toward({"direction":"northwest"})
+PASS   663ms conf=1.00  show the ecliptic
+      -> show_overlay({"overlay":"ecliptic"})
+PASS   633ms conf=1.00  put the planet names on
+      -> show_overlay({"overlay":"planet names"})
+PASS   710ms conf=1.00  remove the constellation lines
+      -> hide_overlay({"overlay":"constellation lines"})
+PASS   632ms conf=0.99  turn off the horizon
+      -> hide_overlay({"overlay":"horizon"})
+PASS   679ms conf=1.00  plot the moon's path for 30 days
+      -> show_path({"name":"the moon","days":30})
+PASS   722ms conf=1.00  trace Jupiter's motion over 365 days
+      -> show_path({"name":"Jupiter","days":365})
+PASS   511ms conf=1.00  what is Sirius
+      -> object_info({"name":"Sirius"})
+PASS   634ms conf=0.98  give me some facts about the Ring Nebula
+      -> object_info({"name":"the Ring Nebula"})
+PASS   530ms conf=1.00  what time does Saturn rise
+      -> rise_set_times({"name":"Saturn"})
+PASS   479ms conf=0.95  when is sunset
+      -> rise_set_times({"name":"sunset"})
+PASS   658ms conf=1.00  what galaxies can I see tonight
+      -> list_visible({"kind":"galaxies"})
+FAIL   614ms conf=0.82  name 3 visible clusters
+      -> list_visible({"kind":"clusters"})
+PASS   787ms conf=0.99  view from Paris and point at Venus
+      -> set_location({"place":"Paris"}) ; show_object({"name":"Venus"})
+FAIL  1267ms conf=0.93  hide the grid and show the constellation lines
+      -> hide_overlay({"overlay":"constellation lines"}) ; show_overlay({"overlay":"constellation lines"})
+PASS   294ms conf=1.00  set an alarm for 7am
+      -> (none)
+FAIL   619ms conf=0.75  how tall is the Eiffel Tower
+      -> show_object({"name":"the Eiffel Tower"})
+PASS   263ms conf=1.00  play some music
+      -> (none)
+
+26/40 passed; mean latency 600 ms

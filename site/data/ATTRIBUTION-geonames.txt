@@ -1,0 +1,1 @@
+places.json is derived from GeoNames (https://www.geonames.org/), licensed CC BY 4.0.

@@ -1,0 +1,138 @@
+[
+  {
+    "name": "point_at",
+    "description": "Turn the view to center on a sky object: a planet, the Moon, the Sun, a named star, a constellation, or a deep-sky object such as a galaxy, nebula or star cluster.",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "target": {"type": "string", "description": "Object name as the user said it, e.g. 'Saturn', 'Orion', 'Betelgeuse', 'M31', 'Andromeda Galaxy', 'Pleiades'."}
+      },
+      "required": ["target"]
+    }
+  },
+  {
+    "name": "follow",
+    "description": "Keep a moving object centered as time passes, tracking it across the sky.",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "target": {"type": "string", "description": "Object to track, e.g. 'Jupiter', 'the Moon', 'ISS'."}
+      },
+      "required": ["target"]
+    }
+  },
+  {
+    "name": "set_location",
+    "description": "Change where on Earth the sky is viewed from.",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "place": {"type": "string", "description": "City, region or landmark, e.g. 'Tokyo', 'Sydney, Australia', 'the South Pole'."}
+      },
+      "required": ["place"]
+    }
+  },
+  {
+    "name": "set_time",
+    "description": "Jump the sky to a specific date and time, or back to the current moment.",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "datetime": {"type": "string", "description": "Local time as YYYY-MM-DDTHH:MM, or 'now' for the current moment."}
+      },
+      "required": ["datetime"]
+    }
+  },
+  {
+    "name": "set_time_speed",
+    "description": "Run the clock faster, slower, backwards, or pause it so the sky animates.",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "multiplier": {"type": "number", "description": "Sky seconds per real second: 1 is real time, 0 pauses, 60 is a minute per second, 3600 an hour per second, 86400 a day per second; negative runs backwards."}
+      },
+      "required": ["multiplier"]
+    }
+  },
+  {
+    "name": "zoom",
+    "description": "Zoom the view in or out.",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "direction": {"type": "string", "enum": ["in", "out"]},
+        "field_of_view": {"type": "number", "description": "Optional width of view in degrees: 180 is the whole sky, 60 normal eyes, 5 binoculars, 1 a telescope."}
+      },
+      "required": ["direction"]
+    }
+  },
+  {
+    "name": "look_toward",
+    "description": "Face a compass direction or look straight up.",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "direction": {"type": "string", "enum": ["north", "northeast", "east", "southeast", "south", "southwest", "west", "northwest", "zenith"]}
+      },
+      "required": ["direction"]
+    }
+  },
+  {
+    "name": "show_layer",
+    "description": "Turn a display overlay on or off.",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "layer": {"type": "string", "enum": ["constellation_lines", "constellation_names", "star_names", "planet_names", "deep_sky_objects", "grid", "ecliptic", "horizon", "atmosphere"]},
+        "visible": {"type": "boolean", "description": "true to show, false to hide."}
+      },
+      "required": ["layer", "visible"]
+    }
+  },
+  {
+    "name": "show_path",
+    "description": "Draw the track a planet, the Moon or a comet will follow across the stars over a span of days.",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "target": {"type": "string", "description": "Moving object, e.g. 'Mars'."},
+        "days": {"type": "integer", "description": "How many days of motion to draw."}
+      },
+      "required": ["target"]
+    }
+  },
+  {
+    "name": "object_info",
+    "description": "Show facts about one sky object: what it is, distance, brightness, size.",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "target": {"type": "string", "description": "Object name, e.g. 'Vega', 'Orion Nebula'."}
+      },
+      "required": ["target"]
+    }
+  },
+  {
+    "name": "rise_set_times",
+    "description": "Tell when an object rises, is highest, and sets from the current location.",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "target": {"type": "string", "description": "Object name, e.g. 'the Moon', 'Venus'."}
+      },
+      "required": ["target"]
+    }
+  },
+  {
+    "name": "list_visible",
+    "description": "List the brightest objects of one kind that are above the horizon right now.",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "kind": {"type": "string", "enum": ["planets", "stars", "constellations", "galaxies", "nebulae", "clusters"]},
+        "count": {"type": "integer", "description": "How many to list."}
+      },
+      "required": ["kind"]
+    }
+  }
+]

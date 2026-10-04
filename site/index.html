@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Needle Planetarium</title>
+<meta name="description" content="A planetarium you drive with plain English or your voice, powered by Cactus Needle 3 running entirely in your browser — with a live look inside the model's decisions.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230b1020'/%3E%3Cpath d='M16 4l2.6 8.4H27l-6.8 5 2.6 8.4L16 20.8l-6.8 5 2.6-8.4-6.8-5h8.4z' fill='%23ffd27a'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="css/style.css">
+<script src="https://cdn.jsdelivr.net/npm/astronomy-engine@2.1.19/astronomy.browser.min.js"></script>
+<script type="module" src="js/app.js"></script>
+</head>
+<body>
+<main id="layout">
+  <section id="stage" aria-label="Planetarium">
+    <canvas id="sky" aria-label="Sky view; drag to look around, scroll to zoom"></canvas>
+    <div id="hud">
+      <div id="hud-place">—</div>
+      <div id="hud-time">—</div>
+      <div id="hud-rate"></div>
+    </div>
+    <div id="card" hidden>
+      <button id="card-close" aria-label="Close">×</button>
+      <h3 id="card-title"></h3>
+      <dl id="card-facts"></dl>
+    </div>
+    <div id="toast" role="status" aria-live="polite"></div>
+    <form id="command" autocomplete="off">
+      <button type="button" id="mic" title="Hold to talk (or press and release)" aria-label="Speak a command" disabled>
+        <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="currentColor" d="M12 15a3 3 0 0 0 3-3V6a3 3 0 1 0-6 0v6a3 3 0 0 0 3 3zm5-3a5 5 0 0 1-10 0H5a7 7 0 0 0 6 6.92V22h2v-3.08A7 7 0 0 0 19 12z"/></svg>
+      </button>
+      <input id="query" placeholder="Loading Needle…" aria-label="Command" disabled>
+      <button type="submit" id="go" disabled>Go</button>
+    </form>
+    <div id="chips" aria-label="Example commands"></div>
+  </section>
+
+  <aside id="inspector" aria-label="Inside the Needle">
+    <header>
+      <h1>Inside the Needle</h1>
+      <p class="sub">Every command is parsed by <a href="https://huggingface.co/Cactus-Compute/needle3" target="_blank" rel="noopener">Needle 3</a> on <em>your</em> device — no server.</p>
+      <div id="model-switch" role="radiogroup" aria-label="Model">
+        <button role="radio" data-model="base" aria-checked="true">Base model</button>
+        <button role="radio" data-model="tuned" aria-checked="false" title="Fine-tuned on planetarium commands" disabled>Fine-tuned</button>
+        <button role="radio" data-model="both" aria-checked="false" title="Run both and compare" disabled>Compare</button>
+      </div>
+      <div id="load-status"></div>
+    </header>
+
+    <section class="panel" id="p-call">
+      <h2>What it heard</h2>
+      <p id="spans" class="spans muted">Type or say a command below.</p>
+      <div id="calls"></div>
+    </section>
+
+    <section class="panel" id="p-retrieval">
+      <h2>Tool space <span class="hint" title="Needle embeds each tool's description and your command into the same vector space, keeps the 5 nearest tools, and constrains decoding to them. This map is a 2-D projection of those embeddings.">?</span></h2>
+      <canvas id="toolmap" height="240"></canvas>
+      <p class="caption">Each star is a tool. Your command lands among them; lines mark the five closest — the only tools the model is allowed to choose from.</p>
+    </section>
+
+    <section class="panel" id="p-why">
+      <h2>Which words mattered <button id="why" disabled>Explain</button></h2>
+      <p id="why-out" class="muted">Re-runs the command with each word removed and measures what changes.</p>
+    </section>
+
+    <section class="panel" id="p-speed">
+      <h2>Speed</h2>
+      <div id="speed" class="speed muted">—</div>
+    </section>
+
+    <section class="panel" id="p-history">
+      <h2>History</h2>
+      <ol id="history"></ol>
+    </section>
+    <footer>
+      Sky data: <a href="https://github.com/ofrohn/d3-celestial" target="_blank" rel="noopener">d3-celestial</a>,
+      <a href="https://github.com/cosinekitty/astronomy" target="_blank" rel="noopener">Astronomy Engine</a>,
+      <a href="https://www.geonames.org/" target="_blank" rel="noopener">GeoNames</a> (CC-BY).
+      Model: <a href="https://github.com/cactus-compute/needle" target="_blank" rel="noopener">Cactus Needle</a> (Apache-2.0).
+    </footer>
+  </aside>
+</main>
+</body>
+</html>

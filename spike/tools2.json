@@ -1,0 +1,63 @@
+[
+  {"name": "show_object", "description": "Show, find or point at a planet, the Moon, a star, a constellation, a galaxy, nebula or star cluster in the sky.",
+   "parameters": {"type": "object", "properties": {
+     "name": {"type": "string", "description": "e.g. Saturn, Orion, Betelgeuse, M31, Andromeda Galaxy, Pleiades"}},
+     "required": ["name"]}},
+  {"name": "follow_object", "description": "Track or follow a moving object, keeping it centered on screen.",
+   "parameters": {"type": "object", "properties": {
+     "name": {"type": "string", "description": "e.g. Jupiter, the Moon"}},
+     "required": ["name"]}},
+  {"name": "set_location", "description": "View the sky from a place on Earth: a city, country or landmark.",
+   "parameters": {"type": "object", "properties": {
+     "place": {"type": "string", "description": "e.g. Tokyo, Sydney Australia, the South Pole"}},
+     "required": ["place"]}},
+  {"name": "set_date_time", "description": "Show the sky at a date and time.",
+   "parameters": {"type": "object", "properties": {
+     "date": {"type": "string", "description": "ISO date YYYY-MM-DD"},
+     "time": {"type": "string", "description": "24-hour HH:MM"}}}},
+  {"name": "reset_to_now", "description": "Go back to the present moment, current time now.",
+   "parameters": {"type": "object", "properties": {}}},
+  {"name": "set_time_speed", "description": "Speed up, slow down, pause or reverse the clock.",
+   "parameters": {"type": "object", "properties": {
+     "speed": {"type": "string", "enum": ["pause", "real time", "minute per second", "hour per second", "day per second"]},
+     "backwards": {"type": "boolean"}},
+     "required": ["speed"]}},
+  {"name": "zoom", "description": "Zoom in or zoom out.",
+   "parameters": {"type": "object", "properties": {
+     "direction": {"type": "string", "enum": ["in", "out"]}},
+     "required": ["direction"]}},
+  {"name": "set_view", "description": "Change field of view to whole sky, naked eye, binoculars or telescope.",
+   "parameters": {"type": "object", "properties": {
+     "view": {"type": "string", "enum": ["whole sky", "naked eye", "binoculars", "telescope"]}},
+     "required": ["view"]}},
+  {"name": "look_toward", "description": "Face a compass direction, or look straight up.",
+   "parameters": {"type": "object", "properties": {
+     "direction": {"type": "string", "enum": ["north", "northeast", "east", "southeast", "south", "southwest", "west", "northwest", "up"]}},
+     "required": ["direction"]}},
+  {"name": "show_overlay", "description": "Turn on or show a display overlay: lines, names, labels, grid, horizon, atmosphere.",
+   "parameters": {"type": "object", "properties": {
+     "overlay": {"type": "string", "enum": ["constellation lines", "constellation names", "star names", "planet names", "deep sky objects", "grid", "ecliptic", "horizon", "atmosphere"]}},
+     "required": ["overlay"]}},
+  {"name": "hide_overlay", "description": "Turn off, hide or remove a display overlay: lines, names, labels, grid, horizon, atmosphere.",
+   "parameters": {"type": "object", "properties": {
+     "overlay": {"type": "string", "enum": ["constellation lines", "constellation names", "star names", "planet names", "deep sky objects", "grid", "ecliptic", "horizon", "atmosphere"]}},
+     "required": ["overlay"]}},
+  {"name": "show_path", "description": "Draw the path a planet or the Moon takes across the stars over some days.",
+   "parameters": {"type": "object", "properties": {
+     "name": {"type": "string", "description": "e.g. Mars"},
+     "days": {"type": "integer", "minimum": 1, "maximum": 3650}},
+     "required": ["name"]}},
+  {"name": "object_info", "description": "Tell me about an object: what it is, how far away, how bright, how big.",
+   "parameters": {"type": "object", "properties": {
+     "name": {"type": "string", "description": "e.g. Vega, Orion Nebula"}},
+     "required": ["name"]}},
+  {"name": "rise_set_times", "description": "When does an object rise or set.",
+   "parameters": {"type": "object", "properties": {
+     "name": {"type": "string", "description": "e.g. the Moon, Venus"}},
+     "required": ["name"]}},
+  {"name": "list_visible", "description": "List which planets, stars, constellations, galaxies, nebulae or clusters are up or visible now.",
+   "parameters": {"type": "object", "properties": {
+     "kind": {"type": "string", "enum": ["planets", "stars", "constellations", "galaxies", "nebulae", "clusters"]},
+     "count": {"type": "integer", "minimum": 1, "maximum": 50}},
+     "required": ["kind"]}}
+]

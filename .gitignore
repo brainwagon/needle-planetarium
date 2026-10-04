@@ -1,0 +1,10 @@
+vendor/
+node_modules/
+.venv/
+train/checkpoints/
+train/*.cact
+train/*.log
+.playwright-mcp/
+train/data.jsonl
+checkpoints/
+.claude/

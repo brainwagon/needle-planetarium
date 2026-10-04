@@ -70,8 +70,8 @@ uv venv .venv && uv pip install "cactus-needle[train,gpu]"
 .venv/bin/python train/gen_data.py --n 6000
 .venv/bin/needle finetune train/data.jsonl --epochs 3 --batch-size 8 --max-len 768 \
     --checkpoint-dir train/checkpoints --out train/checkpoints/planetarium_lora.safetensors
-.venv/bin/needle build train/checkpoints/needle3.safetensors \
-    --lora train/checkpoints/planetarium_lora.safetensors --out site/models/needle3-planetarium.cact
+.venv/bin/needle build checkpoints/needle3.safetensors \
+    --lora train/checkpoints/planetarium_lora.safetensors --out train/needle3-planetarium.cact
 ```
 
 Batch 8 at length 768 fits in an 8 GB GPU (batch 16 at the default 1024 does not).

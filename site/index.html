@@ -17,7 +17,18 @@
     <div id="hud">
       <div id="hud-place">—</div>
       <div id="hud-time">—</div>
-      <div id="hud-rate"></div>
+      <div id="timebar" role="toolbar" aria-label="Time controls">
+        <button type="button" data-t="rewind" title="Rewind — press again to go faster (←)" aria-label="Rewind">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M11 6v12l-8.5-6zM21 6v12l-8.5-6z"/></svg></button>
+        <button type="button" data-t="stop" title="Stop the clock (space)" aria-label="Stop">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6h12v12H6z"/></svg></button>
+        <button type="button" data-t="start" title="Run in real time (space)" aria-label="Start">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 5v14l11-7z"/></svg></button>
+        <button type="button" data-t="ffwd" title="Fast forward — press again to go faster (→)" aria-label="Fast forward">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6v12l8.5-6zM13 6v12l8.5-6z"/></svg></button>
+        <button type="button" data-t="now" title="Reset to now (N)" aria-label="Reset to now" class="now">Now</button>
+        <span id="hud-rate" aria-live="polite"></span>
+      </div>
     </div>
     <div id="card" hidden>
       <button id="card-close" aria-label="Close">×</button>

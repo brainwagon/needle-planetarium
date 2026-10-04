@@ -79,12 +79,43 @@ async function main() {
   startAtNight(sky);
 
   // HUD
-  setInterval(() => {
+  const paintHud = () => {
     $("hud-place").textContent = sky.place.name;
     $("hud-time").textContent = fmtLocal(sky.time, sky.place.tz) + " local";
-    const r = sky.rate;
-    $("hud-rate").textContent = r === 1 ? "" : r === 0 ? "⏸ paused" : `${r < 0 ? "◀◀" : "▶▶"} ${Math.abs(r) >= 86400 ? `${Math.abs(r) / 86400} day` : Math.abs(r) >= 3600 ? `${Math.abs(r) / 3600} hr` : `${Math.abs(r) / 60} min`}/s`;
-  }, 250);
+    const r = sky.rate, a = Math.abs(r);
+    $("hud-rate").textContent = r === 1 ? "real time" : r === 0 ? "stopped"
+      : `${r < 0 ? "−" : "+"}${a >= 86400 ? `${a / 86400} day` : a >= 3600 ? `${a / 3600} hr` : a >= 60 ? `${a / 60} min` : `${a} s`}/s`;
+    const pressed = { rewind: r < 0, stop: r === 0, start: r === 1, ffwd: r > 1, now: false };
+    document.querySelectorAll("#timebar button").forEach((b) => b.setAttribute("aria-pressed", String(pressed[b.dataset.t])));
+  };
+  setInterval(paintHud, 250);
+
+  // Transport buttons drive the clock directly; repeated rewind / fast-forward
+  // presses step up through the speeds.
+  const SPEED_STEPS = [60, 600, 3600, 86400];
+  const nextSpeed = (dir) => {
+    const cur = sky.rate * dir;                            // current speed in the pressed direction
+    const step = SPEED_STEPS.find((s) => s > cur) ?? SPEED_STEPS[SPEED_STEPS.length - 1];
+    return step * dir;
+  };
+  const transport = {
+    rewind: () => sky.setRate(nextSpeed(-1)),
+    stop: () => sky.setRate(0),
+    start: () => sky.setRate(1),
+    ffwd: () => sky.setRate(nextSpeed(+1)),
+    now: () => { sky.setTime(new Date()); sky.setRate(1); },
+  };
+  document.querySelectorAll("#timebar button").forEach((b) => {
+    b.onclick = () => { transport[b.dataset.t](); paintHud(); };
+  });
+  document.addEventListener("keydown", (e) => {
+    if (e.target.closest("input, textarea, button") || e.ctrlKey || e.metaKey || e.altKey) return;
+    const key = { " ": sky.rate === 0 ? "start" : "stop", ArrowLeft: "rewind", ArrowRight: "ffwd", n: "now", N: "now" }[e.key];
+    if (!key) return;
+    e.preventDefault();
+    transport[key]();
+    paintHud();
+  });
 
   // chips
   for (const ex of EXAMPLES) {

@@ -29,7 +29,14 @@ a { color: var(--accent-2); }
 #hud { position: absolute; top: 14px; left: 16px; pointer-events: none; text-shadow: 0 1px 3px #000; }
 #hud-place { font-weight: 600; font-size: 15px; }
 #hud-time { color: var(--muted); font-variant-numeric: tabular-nums; }
-#hud-rate { color: var(--accent); font-size: 12px; }
+#hud-rate { color: var(--accent); font-size: 12px; margin-left: 6px; font-variant-numeric: tabular-nums; white-space: nowrap; }
+#timebar { pointer-events: auto; display: flex; align-items: center; gap: 4px; margin-top: 8px; }
+#timebar button { width: 34px; height: 30px; display: grid; place-items: center; padding: 0; border-radius: 8px; cursor: pointer;
+  background: rgba(20, 27, 48, .85); border: 1px solid var(--line); color: var(--muted); }
+#timebar button svg { width: 16px; height: 16px; fill: currentColor; }
+#timebar button:hover { color: var(--text); border-color: var(--accent-2); }
+#timebar button[aria-pressed="true"] { color: var(--bg); background: var(--accent); border-color: var(--accent); }
+#timebar button.now { width: auto; padding: 0 10px; font: inherit; font-size: 12.5px; font-weight: 600; }
 
 #card { position: absolute; top: 14px; right: 16px; width: min(320px, calc(100% - 32px)); background: rgba(14, 20, 36, 0.92);
   border: 1px solid var(--line); border-radius: 10px; padding: 12px 14px; backdrop-filter: blur(6px); }

@@ -8,3 +8,8 @@ train/*.log
 train/data.jsonl
 checkpoints/
 .claude/
+.venv-torch/
+train/lfm-*/
+train/data*.jsonl
+spike/webgpu/results.log
+train/checkpoints15/

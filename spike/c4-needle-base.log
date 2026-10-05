@@ -1,0 +1,123 @@
+engine + weights ready in 10620 ms; static prefix 1108 tokens
+PASS   710ms conf=0.28  hey can you find Arcturus
+      -> show_object({"name":"Arcturus"})
+FAIL   751ms conf=0.46  um show me the orion nebula
+      -> object_info({"name":"orion nebula"})
+PASS   931ms conf=0.57  I'd like to look at the Whirlpool Galaxy
+      -> show_object({"name":"Whirlpool Galaxy"})
+FAIL  1004ms conf=0.02  aim at Aldebaran
+      -> (none)  [suppressed: [{"name":"set_date_time","arguments":{"date":"2026-10-04","time":"18:00"}}]]
+PASS   718ms conf=0.13  where can I find the big dipper
+      -> show_object({"name":"Dipper"})
+PASS   749ms conf=0.47  could you put Uranus on the screen
+      -> show_object({"name":"Uranus"})
+PASS   583ms conf=0.61  M57 please
+      -> show_object({"name":"M57"})
+FAIL   779ms conf=0.42  navigate to the Lagoon Nebula
+      -> set_location({"place":"Lagoon Nebula"})
+FAIL   732ms conf=0.04  stay locked on the moon
+      -> (none)  [suppressed: [{"name":"set_location","arguments":{"place":"stay locked"}}]]
+FAIL   643ms conf=0.39  keep tracking Saturn as time passes
+      -> reset_to_now({})
+FAIL   740ms conf=0.16  can the view follow Mercury
+      -> (none)  [suppressed: [{"name":"set_view","arguments":{"view":"naked eye"}}]]
+FAIL   854ms conf=0.07  pretend I'm standing in Nairobi
+      -> (none)  [suppressed: [{"name":"list_visible","arguments":{"kind":"planets"}}]]
+FAIL   808ms conf=0.11  switch to Anchorage Alaska
+      -> show_object({"name":"Anchorage Alaska"})
+FAIL   791ms conf=0.05  how does the sky look from Buenos Aires
+      -> (none)  [suppressed: [{"name":"look_toward","arguments":{"direction":"up"}}]]
+FAIL   626ms conf=0.26  set my position to the north pole
+      -> zoom({"direction":"in"})
+PASS  1151ms conf=0.45  show me the sky on December 25 2031 at 6 in the evening
+      -> set_date_time({"date":"2031-12-25","time":"18:00"})
+PASS   967ms conf=0.56  go to 1969-07-20 20:17
+      -> set_date_time({"date":"1969-07-20","time":"20:17"})
+FAIL   896ms conf=0.15  what will the sky look like on the 1st of January 2040 at noon
+      -> (none)  [suppressed: [{"name":"look_toward","arguments":{"direction":"northwest"}}]]
+PASS   809ms conf=0.80  set the date to August 12 2028 at 2am
+      -> set_date_time({"date":"2028-08-12","time":"02:00"})
+PASS   592ms conf=0.84  take me back to right now
+      -> reset_to_now({})
+PASS   915ms conf=0.10  undo all the time travel and go back to today
+      -> reset_to_now({})
+FAIL   515ms conf=0.61  hold time still for a sec
+      -> reset_to_now({})
+PASS   697ms conf=0.64  let time run at a day per second
+      -> set_time_speed({"speed":"day per second"})
+FAIL   985ms conf=0.39  go back in time at a minute per second
+      -> reset_to_now({}) ; set_time_speed({"speed":"minute per second"})
+PASS   625ms conf=0.41  resume real time
+      -> set_time_speed({"speed":"real time"})
+FAIL   654ms conf=0.04  make the hours fly by, one hour each second
+      -> (none)  [suppressed: [{"name":"set_time_speed","arguments":{"speed":"hour per second"}}]]
+PASS   626ms conf=0.18  zoom in a little
+      -> zoom({"direction":"in"})
+PASS   595ms conf=0.48  zoom way out
+      -> zoom({"direction":"out"})
+FAIL   609ms conf=0.47  switch to binoculars
+      -> (none)  [suppressed: [{"name":"show_overlay","arguments":{"overlay":"constellation lines"}}]]
+FAIL   836ms conf=0.34  I want to see everything from horizon to horizon
+      -> show_overlay({"overlay":"horizon"})
+FAIL   723ms conf=0.24  what would a telescope show
+      -> (none)  [suppressed: [{"name":"show_overlay","arguments":{"overlay":"constellation lines"}}]]
+FAIL   760ms conf=0.42  spin me around to the west
+      -> (none)  [suppressed: [{"name":"set_view","arguments":{"view":"naked eye"}}]]
+PASS   759ms conf=0.69  look toward the northeast horizon
+      -> look_toward({"direction":"northeast"})
+FAIL   727ms conf=0.02  point the camera straight overhead
+      -> (none)  [suppressed: [{"name":"show_object","arguments":{"name":"Street"}}]]
+FAIL   716ms conf=0.26  show me the coordinate grid
+      -> show_object({"name":"coordinate grid"})
+FAIL   745ms conf=0.41  mark the deep sky objects on the map
+      -> show_object({"name":"deep sky objects"})
+FAIL   619ms conf=0.18  label the planets
+      -> list_visible({"kind":"planets"})
+PASS   658ms conf=0.60  hide star names
+      -> hide_overlay({"overlay":"star names"})
+FAIL   737ms conf=0.06  make the sky black, no atmosphere glow
+      -> (none)  [suppressed: [{"name":"zoom","arguments":{"direction":"in"}}]]
+FAIL   870ms conf=0.58  i don't want to see the ecliptic anymore
+      -> show_overlay({"overlay":"ecliptic"})
+FAIL   789ms conf=0.36  show where Venus goes over the next 60 days
+      -> list_visible({"kind":"planets","count":50})
+PASS   697ms conf=0.69  draw Saturn's path for 1000 days
+      -> show_path({"name":"Saturn","days":1000})
+PASS   617ms conf=0.59  how bright is Rigel
+      -> object_info({"name":"Rigel"})
+PASS   617ms conf=0.82  what kind of object is M87
+      -> object_info({"name":"M87"})
+PASS   604ms conf=0.63  tell me something about Neptune
+      -> object_info({"name":"Neptune"})
+FAIL   678ms conf=0.05  when's the sun coming up
+      -> (none)  [suppressed: [{"name":"list_visible","arguments":{"kind":"planets"}}]]
+FAIL  1079ms conf=0.01  when does Jupiter go down tonight
+      -> (none)  [suppressed: [{"name":"list_visible","arguments":{"kind":"planets","count":1}},{"name":"set_date_time","arguments":{"date":"2026-10-04","time":"22:15"}}]]
+FAIL   734ms conf=0.16  will the moon be up at all today
+      -> list_visible({"kind":"planets","count":1})
+PASS   721ms conf=0.47  what constellations are up
+      -> list_visible({"kind":"constellations"})
+PASS   778ms conf=0.71  show me a list of nebulae I can see
+      -> list_visible({"kind":"nebulae"})
+PASS   739ms conf=0.53  give me ten visible stars
+      -> list_visible({"kind":"stars","count":10})
+FAIL   779ms conf=0.23  go to Rome and face south
+      -> (none)  [suppressed: [{"name":"set_location","arguments":{"place":"Rome"}},{"name":"zoom","arguments":{"direction":"out"}}]]
+PASS  1138ms conf=0.47  turn on the grid and the planet names
+      -> show_overlay({"overlay":"grid"}) ; show_overlay({"overlay":"planet names"})
+PASS  1096ms conf=0.57  set the date to March 20 2030 at 9pm and show me Mars
+      -> set_date_time({"date":"2030-03-20","time":"21:00"}) ; show_object({"name":"Mars"})
+PASS   998ms conf=0.48  follow the moon and speed time up to an hour per second
+      -> follow_object({"name":"Moon"}) ; set_time_speed({"speed":"hour per second"})
+FAIL   706ms conf=0.14  what's 17 times 23
+      -> list_visible({"kind":"planets","count":17})
+PASS   537ms conf=0.81  book me a table for dinner
+      -> (none)
+PASS   651ms conf=0.05  who won the world series
+      -> (none)  [suppressed: [{"name":"look_toward","arguments":{"direction":"north"}}]]
+PASS   366ms conf=0.89  send a text to my mom
+      -> (none)
+FAIL   696ms conf=0.22  what's a good recipe for banana bread
+      -> show_object({"name":"banana bread"})
+
+29/60 passed; mean latency 754 ms

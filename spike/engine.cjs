@@ -4,12 +4,7 @@ const path = require("node:path");
 
 const VENDOR = path.join(__dirname, "..", "vendor", "needle");
 const createNeedle = require(path.join(VENDOR, "needle.js"));
-
-function dateFact(d = new Date()) {
-  const p = (n) => String(n).padStart(2, "0");
-  const day = d.toLocaleDateString("en-US", { weekday: "short" });
-  return `date: ${d.getFullYear()}-${p(d.getMonth() + 1)}-${p(d.getDate())} ${day} ${p(d.getHours())}:${p(d.getMinutes())}`;
-}
+const { dateFact } = require("./common.mjs");
 
 async function loadEngine() {
   const M = await createNeedle();

@@ -1,0 +1,119 @@
+onnx-community/functiongemma-270m-it-ONNX (q4) ready in 1966 ms
+FAIL  2393ms  can you bring up Jupiter
+      -> (none)
+      raw: "<start_function_call>}\";<end_of_turn>"
+FAIL  7013ms  I want to see the Crab Nebula
+      -> (none)
+      raw: "I apologize for any inconvenience. However, I was unable to retrieve the details for \"The Crab Nebula.\" I only have access to the required tools for date, observation, and mapping. Therefore, I cannot perform the requested functionalities such as showing, finding, or mapping the nebula.<end_of_turn>"
+FAIL  3156ms  where is Polaris
+      -> (none)
+      raw: "Polaris is a famous constellation in the night sky.<end_of_turn>"
+FAIL  5101ms  point the view at Cassiopeia please
+      -> (none)
+      raw: "Okay, I'll help with tracking. To accurately determine the best coordinates for Cassiope, could you please specify the exact name or description of the planet you are interested in?<end_of_turn>"
+FAIL  6260ms  go to M13
+      -> (none)
+      raw: "<start_function_call> pessoais safety, I cannot assist with planning or safety activities. My available functions are limited to managing display and tracking events using the specified tools. I cannot perform dangerous tasks such as navigating the M13 or tracking objects. Therefore, I cannot assist with this request.<end_of_turn>"
+FAIL  7256ms  lock onto Mars and follow it
+      -> (none)
+      raw: "Okay, I'm sorry, I must decline the request. My current capabilities are limited to assisting with specific, predefined, and structured data such as date, time, location, and map details. I cannot perform complex tasks like tracking, navigating, or managing geographical locations like Martian objects. Therefore, I cannot fulfill this request.<end_of_turn>"
+FAIL  3980ms  follow Venus
+      -> (none)
+      raw: "<start_function_call>error:Unable to fetch information about Venus. The given function could not be returned due to a failure error.<end_of_turn>"
+FAIL 12314ms  I'm in Reykjavik
+      -> (none)
+      raw: "Reykjavik is a vibrant city famous for its unique culture, history, and stunning natural attractions. It's a fantastic place to explore.\n\nHere are a few things to consider for visiting:\n\n- **Things to do**\n- **Day trips**\n- **Things to see and do**\n- **Things to pack**\n\n### Things to consider for traveling\n\n- **Day trips** can be very good, especially if you are traveling solo or as a couple.\n- **Things to pack**\n- **Important considerations**\n- **Safety**\n- **Navigation**\n\n### Things to note about the"
+FAIL  2409ms  show the sky over Cape Town
+      -> (none)
+      raw: "<start_function_call>}\";<end_of_turn>"
+FAIL  7249ms  change my location to Denver Colorado
+      -> (none)
+      raw: "<start_function_call> pessoais: I'm sorry, but I cannot assist with planning or recommendations for travel. My current capabilities are limited to assisting with calendar and event management tasks such as date and time management using the given tools. I cannot perform complex geographical analysis, navigation, or recommendations for travel destinations. Therefore, I cannot fulfill this request.<end_of_turn>"
+FAIL  2352ms  what did the sky look like on March 3 1990 at 8pm
+      -> (none)
+      raw: "<start_function_call>[]}<end_function_call><start_function_response>"
+FAIL 11854ms  jump to 2030-05-17 at 23:15
+      -> (none)
+      raw: "<start_function_call>}\";arrows\n0-3: Sun, Moon, Stars, Planets, Other: 40\n0-3: Sun, Moon, Stars, Planets, Other: 40\n0-3: Sun, Moon, Stars, Planets, Other: 40\n0-3: Sun, Moon, Stars, Planets, Other: 40\n0-3: Sun, Moon, Stars, Planets, Other: 40\n0-3: Sun, Moon, Stars, Planets, Other: 40\n0-3: Sun, Moon, Stars, Planets, Other: 4"
+FAIL  8017ms  return to the current time
+      -> (none)
+      raw: "I apologize, but I cannot assist with this request. My current capabilities are limited to assisting with specific, predefined, and categorized tools like date and time management, observation, etc. I cannot perform tasks such as fetching geographical data, tracking celestial bodies, or managing complex display scenarios like \"return to the present moment.\" Therefore, I cannot complete this function using the given parameters.<end_of_turn>"
+FAIL  2613ms  make time go a minute per second
+      -> (none)
+      raw: "<start_function_call>[]}<end_function_call><start_function_response>"
+FAIL  4346ms  freeze time
+      -> (none)
+      raw: "I can help with time tracking and setting. To help me with your requests, could you please specify the type of object you wish to freeze?<end_of_turn>"
+FAIL  3128ms  normal speed please
+      -> (none)
+      raw: "<start_function_call>error:Error calling function 'show_object'.\n<end_of_turn>"
+FAIL  2323ms  rewind at an hour per second
+      -> (none)
+      raw: "<start_function_call>}\";<end_of_turn>"
+FAIL  5794ms  closer
+      -> (none)
+      raw: "I can help with tasks related to location, tracking, and map navigation. To assist me effectively, could you please specify the type of object you are interested in? For example, directions, weather, etc.<end_of_turn>"
+FAIL  7133ms  pull back a bit
+      -> (none)
+      raw: "I apologize for any inconvenience. However, I was unable to retrieve the requested information regarding \"pull back a bit.\" The available tools are designed for specific, predefined, and date-specific tasks such as showing, tracking, and setting the sky. Therefore, I cannot perform the necessary calculations or data retrieval without these specific functionalities.\"<end_of_turn>"
+FAIL  2469ms  telescope view
+      -> (none)
+      raw: "<start_function_call>}\";<end_of_turn>"
+FAIL  2134ms  show me what I'd see with just my eyes
+      -> (none)
+      raw: "<start_function_call>}\";<end_of_turn>"
+FAIL  4866ms  turn around and face south
+      -> (none)
+      raw: "<start_function_call> pessoais safety, heart, and lungs, and a guide are required for this perilous journey. I cannot assist with travel planning or safety considerations. Therefore, I cannot assist with this request.<end_of_turn>"
+FAIL 11975ms  look northwest
+      -> (none)
+      raw: "<start_function_call>}\";arrows\n<start_function_call>arrows\n<start_function_call>direction\n<start_function_call>direction\n<start_function_call>direction\n<start_function_call>direction\n<start_function_call>direction\n<start_function_call>direction\n<start_function_call>direction\n<start_function_call>direction\n<start_function_call>direction\n<start_function_call>direction\n<start_function_call>direction\n<start_function_call>direction\n<start_function_call>direction\n<start_function_call>direction\n<start_function_call>direction\n<start_function_call>direction\n<start_function_call>direction\n<start_function_call>direction\n<start_function_call>direction\n<start_function_call>direction\n<start_function_call>direction\n<start_function_call>direction\n<start_function_call>direction\n<start_function_call>direction\n<start_function_call>direction\n<start_function_call>direction\n<start_function_call>direction\n<start_function_call>direction\n<start_function_call>direction\n<start_function_call>direction\n<start_function_call>direction\n<start_function_call>direction\n<start_function_call>direction\n<start_function_call>direction\n<start_function_call>direction\n<start_function_call>direction\n<start_function_call>direction\n<start_function_call>direction\n<start_function_call>direction\n<start_function_call>direction\n<start_function_call>"
+FAIL  3301ms  show the ecliptic
+      -> show_path({"days":60})
+FAIL  2459ms  put the planet names on
+      -> (none)
+      raw: "<start_function_call>}\";<end_of_turn>"
+FAIL  2487ms  remove the constellation lines
+      -> (none)
+      raw: "<start_function_call>}\";<end_of_turn>"
+FAIL  4582ms  turn off the horizon
+      -> (none)
+      raw: "<start_function_call>error:Error calling function 'show_path'\nThus, I cannot perform the requested action of drawing the path a planet or the Moon.<end_of_turn>"
+FAIL  2665ms  plot the moon's path for 30 days
+      -> (none)
+      raw: "<start_function_call>[]}<end_function_call><start_function_call>}\";<end_of_turn>"
+FAIL  2581ms  trace Jupiter's motion over 365 days
+      -> (none)
+      raw: "<start_function_call>[]}<end_function_call><start_function_call>}\";<start_function_call><start_function_response>"
+FAIL  3615ms  what is Sirius
+      -> (none)
+      raw: "\"I cannot provide information about Sirius due to the limitations of my current capabilities.\"<end_of_turn>"
+FAIL 12154ms  give me some facts about the Ring Nebula
+      -> (none)
+      raw: "Hey there, I'm here for some fun facts about the Ring Nebula!\n\nThe Ring Nebula is a vast network of gas and dust clouds believed to contain the remnants of dead stars. It's a fascinating geological survey of space, and it's a critical study for understanding the formation and evolution of planetary systems.\n\nHere are a few key facts about it:\n\n*   It is the deepest known vacuum region in the entire host of stars.\n*   It contains thousands of active stars.\n*   It is one of the deepest known vacuum regions.\n*   It is a major site for scientific observation and study"
+FAIL  3052ms  what time does Saturn rise
+      -> (none)
+      raw: "<start_function_call>error:Required argument \"time\" returned error.<end_of_turn>"
+FAIL  5652ms  when is sunset
+      -> (none)
+      raw: "I can help with tracking and setting the sky, but I cannot provide specific weather or time predictions for sunset. My current capabilities are limited to assisting with visual and mapping tasks like planet identification, constellation tracking, etc.<end_of_turn>"
+FAIL  4797ms  what galaxies can I see tonight
+      -> (none)
+      raw: "I need to know the specific number of constellations you would like to observe for tonight. Could you please specify the number of constellations you would like to see?<end_of_turn>"
+FAIL  2440ms  name 3 visible clusters
+      -> (none)
+      raw: "<start_function_call>}\";<end_of_turn>"
+FAIL  2866ms  view from Paris and point at Venus
+      -> (none)
+      raw: "<start_function_call>}\";<start_function_call>}\";矶자;\n\n矶자;\n\n<start_function_call>}\";<end_of_turn>"
+FAIL 11458ms  hide the grid and show the constellation lines
+      -> (none)
+      raw: "<start_function_call>}\";<start_function_call>}\";<end_function_call><start_function_call>}\";<end_function_call><start_function_call>];[] circles for constellations;\n\n\n{\"observation\"} ABOVE;\n\n\n{\"observation\"} BELOW;\n\n\n{\"observation\"} BELOW;\n\n\n{\"observation\"} ABOVE;\n\n\n{\"observation\"} ABOVE;\n\n\n{\"observation\"} ABOVE;\n\n\n{\"observation\"} ABOVE;\n\n\n{\"observation\"} ABOVE;\n\n\n{\"observation\"} ABOVE;\n\n\n{\"observation\"} ABOVE;\n\n\n{\"observation\"} ABOVE;\n\n\n{\"observation\"} ABOVE;\n\n\n{\"observation\"} ABOVE;\n\n\n{\"observation\"} ABOVE;\n\n\n{\"observation\"} ABOVE;\n\n\n{\"observation\"} ABOVE;\n\n\n{\"observation\"} ABOVE;\n\n\n{\"observation\"} ABOVE;\n\n\n{\"observation\"} ABOVE"
+PASS  6234ms  set an alarm for 7am
+      -> (none)
+PASS  2701ms  how tall is the Eiffel Tower
+      -> (none)
+PASS  6812ms  play some music
+      -> (none)
+
+3/40 passed; mean latency 5150 ms (prompt ~undefined tokens)

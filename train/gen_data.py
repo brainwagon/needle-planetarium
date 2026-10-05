@@ -5,7 +5,10 @@ run time: the right tool(s) plus distractors, some of them deliberately close
 (show/hide, show_object/object_info).  Every argument value is a span of the
 query (or an enum value the query names), per Needle's grounding contract.
 
-Usage: python train/gen_data.py --n 6000 --out train/data.jsonl
+With --all-tools every example shows all 15 tools instead: a locally tuned model
+has no retrieval head, so that is what it sees at run time.
+
+Usage: python train/gen_data.py --n 6000 --out train/data.jsonl [--all-tools]
 """
 import argparse
 import datetime as dt
@@ -384,7 +387,7 @@ def date_fact(now):
     return f"date: {now:%Y-%m-%d %a %H:%M}; app: planetarium"
 
 
-def make(n, seed, exclude):
+def make(n, seed, exclude, all_tools=False):
     random.seed(seed)
     seen, rows = set(), []
     while len(rows) < n:
@@ -403,10 +406,11 @@ def make(n, seed, exclude):
             continue
         seen.add(q)
         names = [a[0] for a in answers] or random.sample(list(TOOLS), 2)
+        subset = tool_subset(names)               # drawn either way, so --all-tools keeps the same queries
         rows.append({
             "system": date_fact(now),
             "query": q,
-            "tools": tool_subset(names),
+            "tools": list(TOOLS.values()) if all_tools else subset,
             "reasoning": reasoning,
             "answers": [{"name": nm, "arguments": args} for nm, args in answers],
         })
@@ -418,12 +422,13 @@ def main():
     ap.add_argument("--n", type=int, default=6000)
     ap.add_argument("--seed", type=int, default=1)
     ap.add_argument("--out", default=str(ROOT / "train" / "data.jsonl"))
+    ap.add_argument("--all-tools", action="store_true", help="show all 15 tools in every example")
     args = ap.parse_args()
     exclude = set()
     for f in ("cases2.json", "cases3.json"):
         exclude |= {c["q"].lower().rstrip("?.!") for c in json.loads((ROOT / "spike" / f).read_text())}
         exclude |= {c["q"].lower() for c in json.loads((ROOT / "spike" / f).read_text())}
-    rows = make(args.n, args.seed, exclude)
+    rows = make(args.n, args.seed, exclude, args.all_tools)
     with open(args.out, "w") as fh:
         for r in rows:
             fh.write(json.dumps(r, ensure_ascii=False) + "\n")

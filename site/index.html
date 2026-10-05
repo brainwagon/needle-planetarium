@@ -49,11 +49,12 @@
   <aside id="inspector" aria-label="Inside the Needle">
     <header>
       <h1>Inside the Needle</h1>
-      <p class="sub">Every command is parsed by <a href="https://huggingface.co/Cactus-Compute/needle3" target="_blank" rel="noopener">Needle 3</a> on <em>your</em> device — no server.</p>
+      <p class="sub">Every command is parsed by a small model — <a href="https://huggingface.co/Cactus-Compute/needle3" target="_blank" rel="noopener">Needle 3</a> or a fine-tuned <a href="https://huggingface.co/mvandewettering/lfm2.5-350m-planetarium-ONNX" target="_blank" rel="noopener">LFM2.5</a> — on <em>your</em> device. No server.</p>
       <div id="model-switch" role="radiogroup" aria-label="Model">
-        <button role="radio" data-model="base" aria-checked="true">Base model</button>
-        <button role="radio" data-model="tuned" aria-checked="false" title="Fine-tuned on planetarium commands" disabled>Fine-tuned</button>
-        <button role="radio" data-model="both" aria-checked="false" title="Run both and compare" disabled>Compare</button>
+        <button role="radio" data-model="base" aria-checked="true" title="Cactus Needle 3, as released (35 MB)">Needle</button>
+        <button role="radio" data-model="tuned" aria-checked="false" title="Needle 3 fine-tuned on planetarium commands (63 MB)" disabled>Needle tuned</button>
+        <button role="radio" data-model="lfm" aria-checked="false" title="LFM2.5-350M fine-tuned on planetarium commands; needs WebGPU (289 MB)" disabled>LFM2.5 tuned</button>
+        <button role="radio" data-model="both" aria-checked="false" title="Run both fine-tuned models and compare" disabled>Compare</button>
       </div>
       <div id="load-status"></div>
     </header>
@@ -88,7 +89,9 @@
       Sky data: <a href="https://github.com/ofrohn/d3-celestial" target="_blank" rel="noopener">d3-celestial</a>,
       <a href="https://github.com/cosinekitty/astronomy" target="_blank" rel="noopener">Astronomy Engine</a>,
       <a href="https://www.geonames.org/" target="_blank" rel="noopener">GeoNames</a> (CC-BY).
-      Model: <a href="https://github.com/cactus-compute/needle" target="_blank" rel="noopener">Cactus Needle</a> (Apache-2.0).
+      Models: <a href="https://github.com/cactus-compute/needle" target="_blank" rel="noopener">Cactus Needle</a> (Apache-2.0);
+      <a href="https://huggingface.co/LiquidAI/LFM2.5-350M" target="_blank" rel="noopener">Liquid LFM2.5-350M</a>, fine-tuned, under the
+      <a href="https://huggingface.co/mvandewettering/lfm2.5-350m-planetarium-ONNX/blob/main/LICENSE" target="_blank" rel="noopener">LFM Open License v1.0</a>.
     </footer>
   </aside>
 </main>

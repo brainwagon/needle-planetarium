@@ -1,0 +1,76 @@
+LiquidAI/LFM2.5-350M-ONNX (q4) ready in 312 ms
+PASS  1796ms  show me Saturn
+      -> show_object({"name":"Saturn"})
+PASS  1673ms  where's Orion?
+      -> show_object({"name":"Orion"})
+PASS  1680ms  take me to the Andromeda galaxy
+      -> show_object({"name":"Andromeda Galaxy"})
+PASS  1634ms  center on M42
+      -> show_object({"name":"M42"})
+PASS  1711ms  find Betelgeuse for me
+      -> show_object({"name":"Betelgeuse"})
+FAIL  1741ms  track the moon
+      -> set_location({"place":"Moon"})
+FAIL  1677ms  keep Jupiter in the middle of the screen
+      -> set_location({"name":"Jupiter"})
+PASS  1689ms  what does the sky look like from Tokyo
+      -> set_location({"place":"Tokyo"})
+PASS  1768ms  move me to Sydney Australia
+      -> set_location({"place":"Sydney Australia"})
+PASS  1690ms  go to the south pole
+      -> set_location({"place":"south pole"})
+FAIL  1841ms  set the time to midnight on new year's eve 2026
+      -> set_time_speed({"speed":"hour per second","backwards":false})
+FAIL  1610ms  back to the present
+      -> set_location({"place":"Earth"})
+PASS  1855ms  show the sky on July 4 2027 at 9pm
+      -> set_date_time({"date":"2027-07-04","time":"21:00"})
+PASS  1690ms  speed up time to an hour per second
+      -> set_time_speed({"speed":"hour per second"})
+FAIL  1679ms  pause the clock
+      -> set_location({"place":"Earth"})
+PASS  1850ms  run time backwards a day every second
+      -> set_time_speed({"speed":"day per second","backwards":true})
+PASS  1665ms  zoom in
+      -> zoom({"direction":"in"})
+PASS  1711ms  zoom out to see the whole sky
+      -> zoom({"direction":"out"})
+PASS  1672ms  give me a binocular view
+      -> set_view({"view":"binoculars"})
+PASS  1646ms  face east
+      -> look_toward({"direction":"east"})
+FAIL  1649ms  look straight up
+      -> look_toward({"direction":"north"})
+PASS  1701ms  turn on constellation lines
+      -> show_overlay({"overlay":"constellation lines"})
+PASS  1669ms  hide the grid
+      -> hide_overlay({"overlay":"grid"})
+FAIL  2619ms  get rid of the atmosphere
+      -> (none)
+      raw: "I don't have access to a tool that can remove atmospheric effects from a planetarium view. The available tools can only show objects, follow moving objects, adjust time speeds, zoom in/out, or toggle overlays. Would you like me to help with any of these available functions instead?<|im_end|>"
+FAIL  1658ms  label the stars
+      -> list_visible({"kind":"stars","count":5})
+PASS  1632ms  draw Mars's path over the next 90 days
+      -> show_path({"name":"Mars","days":90})
+PASS  1600ms  how far away is Vega?
+      -> object_info({"name":"Vega"})
+PASS  1625ms  tell me about the Pleiades
+      -> object_info({"name":"Pleiades"})
+FAIL  1807ms  when does the moon rise tonight
+      -> set_date_time({"date":"2026-10-04","time":"18:00"})
+FAIL  1824ms  when will Venus set?
+      -> set_date_time({"date":"2026-10-04","time":"12:00"})
+PASS  1683ms  which planets are up right now
+      -> list_visible({"kind":"planets","count":5})
+PASS  1661ms  list the five brightest stars visible
+      -> list_visible({"kind":"stars","count":5})
+FAIL  1576ms  show me Saturn from Tokyo
+      -> show_object({"name":"Saturn"})
+PASS  1807ms  turn on constellation names and zoom out
+      -> show_overlay({"overlay":"constellation names"}) ; zoom({"direction":"out"})
+PASS  2573ms  what's the weather in Paris
+      -> (none)
+PASS  4140ms  write me a poem about stars
+      -> (none)
+
+25/36 passed; mean latency 1819 ms (prompt ~undefined tokens)

@@ -1,0 +1,89 @@
+onnx-community/functiongemma-270m-it-ONNX (fp32) ready in 15329 ms
+FAIL  5203ms  can you bring up Jupiter
+      -> set_date_time({"date":"2024-05-14","time":"00:00"})
+FAIL  4648ms  I want to see the Crab Nebula
+      -> (none)
+      raw: "I can help with that! To show you the Crab Nebula, could you please specify the date you are interested in?<end_of_turn>"
+FAIL  3467ms  where is Polaris
+      -> list_visible({"kind":"stars"})
+FAIL  4815ms  point the view at Cassiopeia please
+      -> set_view({"view":"whole sky"}) ; set_location({"place":"Cassiopeia"})
+FAIL  3543ms  go to M13
+      -> set_location({"place":"M13"})
+FAIL  3613ms  lock onto Mars and follow it
+      -> rise_set_times({"name":"Mars"})
+PASS  3501ms  follow Venus
+      -> follow_object({"name":"Venus"})
+FAIL  4378ms  I'm in Reykjavik
+      -> (none)
+      raw: "I can help with things related to Reykjavik. Could you please specify what kind of information you are looking for?<end_of_turn>"
+FAIL  4961ms  show the sky over Cape Town
+      -> set_view({"view":"whole sky"}) ; set_location({"place":"Cape Town"})
+PASS  3380ms  change my location to Denver Colorado
+      -> set_location({"place":"Denver, Colorado"})
+FAIL  5963ms  what did the sky look like on March 3 1990 at 8pm
+      -> set_date_time({"date":"2024-03-03T19:00:00","time":"21:00"})
+FAIL  3150ms  jump to 2030-05-17 at 23:15
+      -> reset_to_now({})
+PASS  3146ms  return to the current time
+      -> reset_to_now({})
+FAIL  5004ms  make time go a minute per second
+      -> set_date_time({"date":"2024-05-14","time":"60"})
+FAIL  4200ms  freeze time
+      -> set_time_speed({"backwards":false,"speed":"minute per second"})
+FAIL  3810ms  normal speed please
+      -> set_time_speed({"speed":100,"backwards":false})
+FAIL  5022ms  rewind at an hour per second
+      -> set_date_time({"date":"2024-05-14","time":"00:00"})
+FAIL  4145ms  closer
+      -> (none)
+      raw: "I can help with things related to astronomy. Could you please specify the type of object you are interested in?<end_of_turn>"
+FAIL  6325ms  pull back a bit
+      -> (none)
+      raw: "I apologize, but I cannot assist with pulling back a bit of time. My current capabilities are limited to assisting with specific functions like managing objects, tracking locations, showing overlays, and setting time. I cannot perform actions that involve time manipulation or management.<end_of_turn>"
+FAIL  3453ms  telescope view
+      -> set_view({"view":"whole sky"})
+FAIL  3248ms  show me what I'd see with just my eyes
+      -> show_path({"days":360})
+FAIL  4454ms  turn around and face south
+      -> set_view({"view":"whole sky"}) ; set_location({"place":"south"})
+FAIL  3341ms  look northwest
+      -> set_view({"view":"whole sky"})
+FAIL  3880ms  show the ecliptic
+      -> show_path({"days":14,"name":"Ecliptic"})
+FAIL  3508ms  put the planet names on
+      -> list_visible({"kind":"planets"})
+FAIL  3745ms  remove the constellation lines
+      -> hide_overlay({"overlay":""})
+FAIL  4969ms  turn off the horizon
+      -> hide_overlay({"overlay":"","description":"horizon","type":"constellation names"})
+FAIL  4559ms  plot the moon's path for 30 days
+      -> rise_set_times({"name":"moon"}) ; show_path({"days":30})
+FAIL  8208ms  trace Jupiter's motion over 365 days
+      -> set_date_time({"date":"2024-05-14","time":"00:00"}) ; zoom({"direction":"in"}) ; set_time_speed({"backwards":true,"speed":"minute per second"})
+FAIL  5120ms  what is Sirius
+      -> set_date_time({"date":"2024-05-14","time":"00:00"})
+FAIL  4947ms  give me some facts about the Ring Nebula
+      -> (none)
+      raw: "I can certainly help with that. To provide you with accurate facts about the Ring Nebula, could you please specify the type of Ring Nebula you are interested in?<end_of_turn>"
+FAIL  3859ms  what time does Saturn rise
+      -> rise_set_times({"name":"the Moon"})
+FAIL  6100ms  when is sunset
+      -> (none)
+      raw: "I cannot provide information about sunset. My current capabilities are focused on calling specific tools for managing objects like planets, stars, constellations, galaxies, nebulae, and showing their appearance. I cannot assist with predicting or analyzing sunset times.<end_of_turn>"
+PASS  3545ms  what galaxies can I see tonight
+      -> list_visible({"kind":"galaxies"})
+FAIL  3264ms  name 3 visible clusters
+      -> list_visible({"kind":"clusters"})
+FAIL  4396ms  view from Paris and point at Venus
+      -> set_location({"place":"Paris"}) ; object_info({"name":"Venus"})
+FAIL  3515ms  hide the grid and show the constellation lines
+      -> hide_overlay({"overlay":"","description":"constellation lines"})
+PASS  5859ms  set an alarm for 7am
+      -> (none)
+FAIL  3322ms  how tall is the Eiffel Tower
+      -> set_view({"view":"whole sky"})
+PASS  6174ms  play some music
+      -> (none)
+
+6/40 passed; mean latency 4393 ms (prompt ~1226 tokens)

@@ -1,0 +1,75 @@
+../train/lfm-onnx/exports/lfm-merged-ONNX (q4) ready in 438 ms
+PASS  2167ms  show me Saturn
+      -> show_object({"name":"Saturn"})
+PASS  2068ms  where's Orion?
+      -> show_object({"name":"Orion"})
+PASS  2118ms  take me to the Andromeda galaxy
+      -> show_object({"name":"the Andromeda galaxy"})
+PASS  2060ms  center on M42
+      -> show_object({"name":"M42"})
+PASS  2098ms  find Betelgeuse for me
+      -> show_object({"name":"Betelgeuse"})
+PASS  2176ms  track the moon
+      -> follow_object({"name":"the moon"})
+PASS  2112ms  keep Jupiter in the middle of the screen
+      -> follow_object({"name":"Jupiter"})
+PASS  2097ms  what does the sky look like from Tokyo
+      -> set_location({"place":"Tokyo"})
+PASS  2120ms  move me to Sydney Australia
+      -> set_location({"place":"Sydney Australia"})
+PASS  2136ms  go to the south pole
+      -> set_location({"place":"the south pole"})
+FAIL  2338ms  set the time to midnight on new year's eve 2026
+      -> set_date_time({"date":"2026-10-04","time":"00:00"})
+PASS  2015ms  back to the present
+      -> reset_to_now({})
+PASS  2328ms  show the sky on July 4 2027 at 9pm
+      -> set_date_time({"date":"2027-07-04","time":"21:00"})
+PASS  2180ms  speed up time to an hour per second
+      -> set_time_speed({"speed":"hour per second"})
+PASS  2124ms  pause the clock
+      -> set_time_speed({"speed":"pause"})
+PASS  2247ms  run time backwards a day every second
+      -> set_time_speed({"speed":"day per second","backwards":true})
+PASS  2032ms  zoom in
+      -> zoom({"direction":"in"})
+PASS  2138ms  zoom out to see the whole sky
+      -> set_view({"view":"whole sky"})
+PASS  2087ms  give me a binocular view
+      -> set_view({"view":"binoculars"})
+PASS  2115ms  face east
+      -> look_toward({"direction":"east"})
+PASS  2102ms  look straight up
+      -> look_toward({"direction":"up"})
+PASS  2167ms  turn on constellation lines
+      -> show_overlay({"overlay":"constellation lines"})
+PASS  2071ms  hide the grid
+      -> hide_overlay({"overlay":"grid"})
+PASS  2143ms  get rid of the atmosphere
+      -> hide_overlay({"overlay":"atmosphere"})
+PASS  2132ms  label the stars
+      -> show_overlay({"overlay":"star names"})
+PASS  2113ms  draw Mars's path over the next 90 days
+      -> show_path({"name":"Mars","days":90})
+PASS  2077ms  how far away is Vega?
+      -> object_info({"name":"Vega"})
+PASS  2125ms  tell me about the Pleiades
+      -> object_info({"name":"the Pleiades"})
+PASS  2122ms  when does the moon rise tonight
+      -> rise_set_times({"name":"the moon"})
+PASS  2113ms  when will Venus set?
+      -> rise_set_times({"name":"Venus"})
+PASS  2075ms  which planets are up right now
+      -> list_visible({"kind":"planets"})
+PASS  2139ms  list the five brightest stars visible
+      -> list_visible({"kind":"stars","count":5})
+PASS  2256ms  show me Saturn from Tokyo
+      -> set_location({"place":"Tokyo"}) ; show_object({"name":"Saturn"})
+PASS  2309ms  turn on constellation names and zoom out
+      -> show_overlay({"overlay":"constellation names"}) ; zoom({"direction":"out"})
+PASS  2049ms  what's the weather in Paris
+      -> (none)
+PASS  2071ms  write me a poem about stars
+      -> (none)
+
+35/36 passed; mean latency 2134 ms (prompt ~1443 tokens)

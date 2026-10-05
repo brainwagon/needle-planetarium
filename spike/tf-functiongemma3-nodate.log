@@ -1,0 +1,112 @@
+onnx-community/functiongemma-270m-it-ONNX (q4) ready in 2180 ms
+FAIL  4551ms  can you bring up Jupiter
+      -> set_date_time({"date":"2024-09-14T00:00","time":"24-hour time"})
+FAIL  6464ms  I want to see the Crab Nebula
+      -> (none)
+      raw: "I apologize for any inconvenience. However, I was unable to retrieve the details for \"The Crab Nebula.\" I only have access to the necessary tools for tracking, showing, and navigation. Therefore, I cannot perform the requested functionalities such as finding or pointing at planets, stars, constellations, or galaxies.<end_of_turn>"
+FAIL  3642ms  where is Polaris
+      -> (none)
+      raw: "Polaris is the name of the Moon, a star, a constellation, a galaxy, or nebula.<end_of_turn>"
+FAIL  3775ms  point the view at Cassiopeia please
+      -> (none)
+      raw: "To help me determine the best coordinates for your observation, could you specify the exact location you wish to visit?<end_of_turn>"
+FAIL  3482ms  go to M13
+      -> follow_object({"name":"M13"})
+FAIL  6881ms  lock onto Mars and follow it
+      -> (none)
+      raw: "I am unable to assist with this request. My current capabilities are limited to calling specific, predefined tools for astronomical and mapping tasks such as planet detection, constellation mapping, etc. I cannot perform complex navigation maneuvers, obstacle avoidance, or real-time tracking. Therefore, I cannot troubleshoot or troubleshoot these technical issues.<end_of_turn>"
+FAIL  2928ms  follow Venus
+      -> (none)
+      raw: "<start_function_call>error:Error calling function 'show_object'.\n<end_of_turn>"
+FAIL 10481ms  I'm in Reykjavik
+      -> (none)
+      raw: "Reykjavik is a vibrant city famous for its unique environment. Here are a few things to consider:\n\n- **Nature:** The city offers stunning views of the surrounding mountains, glaciers, and the stars.\n- **Activities:** Hiking, exploring, and hiking are popular activities.\n- **Culture:** Reykjavik is known for its unique architecture, its colorful buildings, and its cozy atmosphere.\n- **Safety:** Be mindful of petty crime in general.\n\n**Overall:** It is a wonderful place to visit for nature, hiking, and relaxation. Enjoy your trip!**<end_of_turn>"
+FAIL  3499ms  show the sky over Cape Town
+      -> rise_set_times({"name":"The Moon, Cape Town"})
+FAIL  3679ms  change my location to Denver Colorado
+      -> (none)
+      raw: "<start_function_call>error: Question returned an error due to a function limitation. Could not determine the required function.<end_of_turn>"
+FAIL  3896ms  what did the sky look like on March 3 1990 at 8pm
+      -> (none)
+      raw: "<start_function_call>error: Failed to fetch weather data for March 3, 1990.<end_of_turn>"
+FAIL  3367ms  jump to 2030-05-17 at 23:15
+      -> follow_object({"name":"Jupiter, the Moon"})
+FAIL 11513ms  return to the current time
+      -> (none)
+      raw: "<start_function_call>}\";arrows\n    arrows\n    arrows\n    arrows\n    arrows\n    arrows\n    arrows\n    arrows\n    arrows\n    arrows\n    arrows\n    arrows\n    arrows\n    arrows\n    arrows\n    arrows\n    arrows\n    arrows\n    arrows\n    arrows\n    arrows\n    arrows\n    arrows\n    arrows\n    arrows\n    arrows\n    arrows\n    arrows\n    arrows\n    arrows\n    arrows\n    arrows\n    arrows\n    arrows\n    arrows\n    arrows\n    arrows\n    arrows\n    arrows\n    arrows\n    arrows\n    arrows\n    "
+FAIL  4717ms  make time go a minute per second
+      -> (none)
+      raw: "<start_function_call>error:Error calling function \"time\"\n\nInvalid input format: \"Required arguments: {\"error\": \"Error calling function\", \"description\": \"Invalid input format for time travel calculations.\"}$$<end_of_turn>"
+FAIL  5603ms  freeze time
+      -> (none)
+      raw: "I can help with time-related tasks using the available tools. To freeze time effectively, could you please specify the desired time range? I can set it to \"none\" or \"none\" if you prefer to limit the possible outcomes.<end_of_turn>"
+FAIL  3404ms  normal speed please
+      -> (none)
+      raw: "<start_function_call>error:Error calling function \"show_object\". No function named \"show_object\".<end_of_turn>"
+FAIL  7469ms  rewind at an hour per second
+      -> set_date_time({"date":"2024-07-14T00:00Z","time":"24-hour HH:MM","temperature":"HIGH"}) ; set_location({"place":"[]"}) ; follow_object({})
+FAIL  4610ms  closer
+      -> (none)
+      raw: "I can help with tasks related to location, tracking, and map visualization. To assist me effectively, could you please specify the type of object you wish to analyze?<end_of_turn>"
+FAIL  5499ms  pull back a bit
+      -> (none)
+      raw: "I apologize for any inconvenience. To help you with your tasks, could you please specify if you want to perform any specific actions related to navigation, observation, or mapping? For example, are you looking for directions, directions, or general instructions?<end_of_turn>"
+FAIL  3607ms  telescope view
+      -> (none)
+      raw: "<start_function_call>error: Failed to view the sky using the telescope. No suitable display for a telescope.<end_of_turn>"
+FAIL  2289ms  show me what I'd see with just my eyes
+      -> (none)
+      raw: "<start_function_call>}\";<end_of_turn>"
+FAIL 11921ms  turn around and face south
+      -> (none)
+      raw: "<start_function_call>}\";arrows\n<start_function_call>arrows\n<start_function_call> Lausanne\n<start_function_call> Lausanne\n<start_function_call> Lausanne\n<start_function_call> Lausanne\n<start_function_call> Lausanne\n<start_function_call> Lausanne\n<start_function_call> Lausanne\n<start_function_call> Lausanne\n<start_function_call> Lausanne\n<start_function_call> Lausanne\n<start_function_call> Lausanne\n<start_function_call> Lausanne\n<start_function_call> Lausanne\n<start_function_call> Lausanne\n<start_function_call> Lausanne\n<start_function_call> Lausanne\n<start_function_call> Lausanne\n<start_function_call> Lausanne\n<start_function_call> Lausanne\n<start_function_call> Lausanne\n<start_function_call> Lausanne\n<start_function_call> Lausanne\n<start_function_call> Lausanne\n<start_function_call> Lausanne\n<start_function_call> Lausanne\n<start_function_call> Lausanne\n<start_function_call> Lausanne\n<start_function_call> Lausanne\n<start_function_call> Lausanne\n<escape> Lausanne\n<escape> Lausanne\n<escape> Lausanne\n<escape> Lausanne\n<escape> Lausanne\n<escape> Lausanne\n<escape> Lausanne\n<escape> Lausanne\n<escape> Lausanne\n<escape> Lausanne\n<escape> Lausanne\n<escape>"
+FAIL  3001ms  look northwest
+      -> (none)
+      raw: "<start_function_call>error:Error calling function 'show_object'.\n<end_of_turn>"
+FAIL  2690ms  show the ecliptic
+      -> show_path({})
+FAIL 11257ms  put the planet names on
+      -> (none)
+      raw: "<start_function_call> pessoais\n<start_function_call> dime\n<start_function_call>\n<start_function_call>\n<start_function_call>clickable\n<start_function_call>clickable{}题\n<start_function_call>updated\n<start_function_call>clickable{}题\n<start_function_call>updated\n<start_function_call>clickable{}题\n<start_function_call>updated\n<start_function_call>clickable{}题\n<start_function_call>clickable{}题\n<start_function_call>updated\n<start_function_call>clickable{}题\n<start_function_call>updated\n<start_function_call>clickable{}题\n<start_function_call>updated\n<start_function_call>clickable{}题\n<start_function_call>updated\n<start_function_call>clickable{}题\n<start_function_call>updated\n<start_function_call>clickable{}题\n<start_function_call>updated\n<start_function_call>clickable{}题\n<start_function_call>updated\n<start_function_call>clickable{}题\n<start_function_call>updated\n<start_function_call>clickable{}题\n<start_function_call>updated\n<start_function_call>clickable{}题\n<start_function_call>updated\n<start_function_call>clickable{}题\n<start_function_call>"
+FAIL  3432ms  remove the constellation lines
+      -> (none)
+      raw: "<start_function_call>error:Error calling function 'show_path'. Failed to retrieve the required function.<end_of_turn>"
+FAIL  4532ms  turn off the horizon
+      -> (none)
+      raw: "<start_function_call>error:Error calling function \"show_path\"\n{\"error\": \"Error\", \"description\": \"Error retrieving information about a planet or the Moon.\"}$$}$$<end_of_turn>"
+FAIL  3655ms  plot the moon's path for 30 days
+      -> (none)
+      raw: "<start_function_call>}\";arrows=\"left\"\narrows=\"right\"\narrows=\"down\"\narrows=\"space\"\n<start_function_response>"
+FAIL  8863ms  trace Jupiter's motion over 365 days
+      -> set_date_time({"date":"2024-07-14T12:00:00","time":"24-hour HH:MM","temperature":"HIGH"}) ; zoom({"direction":"northwest"}) ; set_view({"view":"full"})
+FAIL  5732ms  what is Sirius
+      -> (none)
+      raw: "\"I cannot fulfill a request for a specific astronomical trivia trivia about Sirius. My current capabilities are limited to assisting with visual and mapping tasks such as planet identification, constellation tracking, and map representation.\"\nTherefore, I cannot perform the requested technical analysis or trivia.<end_of_turn>"
+FAIL 11231ms  give me some facts about the Ring Nebula
+      -> (none)
+      raw: "The Ring Nebula are fascinating geological formations composed of icy deposits. They are among the deepest known vacuum wells in the universe, and they are among the three deepest known vacuum wells in the constellation of Gas Giants.\n\nThey are characterized by a wide variety of colors, including blues, greens, and violets. They are also extremely hard and durable, resistant to corrosion, and can withstand temperatures up to 11 degrees Celsius.\n\nThey are among the three deepest known vacuum wells in the constellation of Gas Giants. They are also among the three deepest known vacuum wells in the Gas Giants Nebula.\n\nThey are a testament to the immense scale and"
+FAIL  2907ms  what time does Saturn rise
+      -> (none)
+      raw: "<start_function_call>error:Required argument \"time\" returned error.<end_of_turn>"
+FAIL  3834ms  when is sunset
+      -> (none)
+      raw: "To help me determine the sunset time, could you please specify the date you are interested in?<end_of_turn>"
+FAIL  5032ms  what galaxies can I see tonight
+      -> (none)
+      raw: "I can help you with stargazing recommendations using various criteria. Could you specify the types of celestial bodies you are interested in?\n\nFor example, \"Planets,\" \"Stars,\" or \"Galaxies.\"<end_of_turn>"
+FAIL  2586ms  name 3 visible clusters
+      -> (none)
+      raw: "<start_function_call>}\";<end_of_turn>"
+FAIL  3571ms  view from Paris and point at Venus
+      -> rise_set_times({"name":"Venus"})
+FAIL  2640ms  hide the grid and show the constellation lines
+      -> (none)
+      raw: "<start_function_call>}\";<start_function_call>airedeline{}<end_function_call><start_function_response>"
+PASS  5789ms  set an alarm for 7am
+      -> (none)
+PASS  2963ms  how tall is the Eiffel Tower
+      -> (none)
+PASS  6366ms  play some music
+      -> (none)
+
+3/40 passed; mean latency 5184 ms (prompt ~1226 tokens)

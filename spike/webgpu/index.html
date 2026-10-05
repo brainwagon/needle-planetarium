@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>LFM WebGPU Prototype</title>
+<style>
+  :root { --bg: #0d1117; --fg: #e6edf3; --dim: #8b949e; --ok: #3fb950; --bad: #f85149; --line: #30363d; }
+  body { background: var(--bg); color: var(--fg); font: 14px/1.45 ui-monospace, Menlo, Consolas, monospace; margin: 0; padding: 16px; }
+  h1 { font-size: 16px; margin: 0 0 8px; }
+  #stats { white-space: pre-wrap; color: var(--dim); margin-bottom: 12px; }
+  form { display: flex; gap: 8px; margin: 12px 0; max-width: 720px; }
+  input { flex: 1; min-width: 0; background: #161b22; color: var(--fg); border: 1px solid var(--line); padding: 6px 8px; font: inherit; }
+  button { background: #21262d; color: var(--fg); border: 1px solid var(--line); padding: 6px 12px; font: inherit; cursor: pointer; }
+  button:disabled { opacity: .5; cursor: default; }
+  .row { border-top: 1px solid var(--line); padding: 4px 0; overflow-wrap: anywhere; }
+  .ok { color: var(--ok); } .bad { color: var(--bad); } .dim { color: var(--dim); }
+</style>
+</head>
+<body>
+<h1>LFM2.5-350M (fine-tuned) in the browser</h1>
+<div id="stats">loading…</div>
+<form id="try"><input id="q" placeholder="type a command, e.g. show me Saturn from Tokyo" disabled><button id="go" disabled>Run</button></form>
+<button id="bench" disabled>Run test set</button>
+<div id="out"></div>
+
+<script type="importmap">
+{ "imports": { "@huggingface/transformers": "https://cdn.jsdelivr.net/npm/@huggingface/transformers@4.3.0/dist/transformers.min.js" } }
+</script>
+<script type="module">
+// Served from the repo root (python3 -m http.server 8766), so the page can read the
+// local export in train/ and the shared modules in spike/.
+//   ?device=webgpu|wasm   ?dtype=q4|q4f32   ?cases=cases4.json   ?model=lfm-merged-ONNX
+//   ?auto=1 runs the test set on load and POSTs the results to /log (serve.py)
+import * as tf from "@huggingface/transformers";
+import { dateFact, caseMatches } from "../common.mjs";
+import { LFM_SYSTEM, createRunner, parseLfm } from "../../site/js/lfm.js";
+
+const params = new URLSearchParams(location.search);
+const $ = (id) => document.getElementById(id);
+const lines = [];
+const stat = (s) => { lines.push(s); $("stats").textContent = lines.join("\n"); };
+const report = (extra = []) => fetch("/log", { method: "POST", body: [...lines, ...extra].join("\n") }).catch(() => {});
+addEventListener("error", (e) => { stat(`error: ${e.message}`); report(); });
+addEventListener("unhandledrejection", (e) => { stat(`error: ${e.reason?.stack || e.reason}`); report(); });
+const callStr = (calls) => calls.map((k) => `${k.name}(${JSON.stringify(k.arguments)})`).join(" ; ") || "(none)";
+
+const adapter = navigator.gpu ? await navigator.gpu.requestAdapter().catch(() => null) : null;
+const device = params.get("device") || (adapter ? "webgpu" : "wasm");
+const info = adapter?.info ? `${adapter.info.vendor} ${adapter.info.architecture} ${adapter.info.description}`.trim() : "none";
+stat(`device ${device}   (WebGPU adapter: ${info}; shader-f16: ${adapter?.features.has("shader-f16") ?? false})`);
+
+tf.env.localModelPath = "/train/lfm-onnx/exports/";
+tf.env.allowLocalModels = true;                       // off by default in browsers
+tf.env.allowRemoteModels = false;
+const id = params.get("model") || "lfm-merged-ONNX";
+const tools = (await (await fetch("../tools2.json")).json()).map((f) => ({ type: "function", function: f }));
+
+let t0 = performance.now();
+const tok = await tf.AutoTokenizer.from_pretrained(id);
+// q4 stores the embedding as GatherBlockQuantized, which only the WebGPU backend implements
+const dtype = params.get("dtype") || (device === "webgpu" ? "q4" : "q4f32");
+// Transformers.js has no q4f32 dtype; name the file and let "fp32" add no suffix
+const model = await tf.AutoModelForCausalLM.from_pretrained(id,
+  dtype === "q4f32" ? { dtype: "fp32", model_file_name: "model_q4f32", device } : { dtype, device });
+stat(`model (${dtype}) loaded in ${((performance.now() - t0) / 1000).toFixed(1)} s`);
+
+// date fact fixed at load, as the site does for Needle: changing it would invalidate the cache
+const runner = await createRunner({ tf, tok, model, system: `${LFM_SYSTEM}\n${dateFact()}`, tools });
+stat(`prompt cache: ${runner.prefixTokens} tokens prefilled in ${runner.prefixMs.toFixed(0)} ms`);
+
+function show(q, r, ok) {
+  const div = document.createElement("div");
+  div.className = "row";
+  const mark = ok === undefined ? "" : `<span class="${ok ? "ok" : "bad"}">${ok ? "PASS" : "FAIL"}</span> `;
+  div.innerHTML = `${mark}<span class="dim">${r.ms.toFixed(0).padStart(5)} ms</span>  ${q}<br>&nbsp;&nbsp;→ ${callStr(parseLfm(r.text))}`;
+  $("out").prepend(div);
+}
+
+// first command pays one-off shader compilation; run a throwaway so timings are steady-state
+t0 = performance.now();
+await runner.complete("show me Saturn");
+stat(`warm-up command: ${(performance.now() - t0).toFixed(0)} ms`);
+for (const el of ["q", "go", "bench"]) $(el).disabled = false;
+
+$("try").onsubmit = async (e) => {
+  e.preventDefault();
+  const q = $("q").value.trim();
+  if (q) show(q, await runner.complete(q));
+};
+
+$("bench").onclick = async () => {
+  $("bench").disabled = true;
+  const cases = await (await fetch(`../${params.get("cases") || "cases4.json"}`)).json();
+  let pass = 0, total = 0;
+  for (const c of cases) {
+    const r = await runner.complete(c.q);
+    const ok = caseMatches(c, parseLfm(r.text));
+    pass += ok;
+    total += r.ms;
+    show(c.q, r, ok);
+  }
+  const summary = `test set: ${pass}/${cases.length} passed; mean ${(total / cases.length).toFixed(0)} ms per command`;
+  stat(summary);
+  console.log(summary);
+  const misses = [...$("out").querySelectorAll(".row")].filter((r) => r.querySelector(".bad")).map((r) => r.textContent);
+  report(misses.reverse());
+  $("bench").disabled = false;
+};
+if (params.get("auto")) $("bench").click();
+</script>
+</body>
+</html>

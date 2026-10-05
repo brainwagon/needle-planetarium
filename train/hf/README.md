@@ -33,32 +33,38 @@ Fifteen tools, in [`tools.json`](https://github.com/brainwagon/needle-planetariu
 
 ## Results
 
-Exact-match accuracy on 40 hand-written commands held out from the training
-templates (`spike/cases3.json`) and 36 earlier ones (`spike/cases2.json`),
-run through the shipped WASM engine with all 15 tools declared. The base model
-narrows them to 5 by embedding retrieval; this fine-tune has no embedding
-readout (see Limitations), so it sees all 15:
+Exact-match accuracy, run through the shipped WASM engine with all 15 tools
+declared. The base model narrows them to 5 by embedding retrieval; this
+fine-tune has no embedding readout (see Limitations), so it sees all 15 — and,
+since this revision, it is trained that way too.
 
-| Test set | Base Needle 3 | This fine-tune |
-|---|---|---|
-| `cases3.json` — 40 commands with phrasings unseen in training | 20/40 (50%) | **26/40 (65%)** |
-| `cases2.json` — 36 commands written before the generator | 18/36 (50%) | **31/36 (86%)** |
-| Trainer's own validation split (600 template examples) | — | 538/600 (90%) |
+| Test set | Base Needle 3 | First fine-tune (5-tool training) | **This revision (15-tool training)** |
+|---|---|---|---|
+| `cases4.json` — 60 new commands, written after training | 29/60 (48%) | 46/60 (77%) | **50/60 (83%)** |
+| `cases3.json` — 40 commands held out from the templates | 20/40 (50%) | 26/40 (65%) | **31/40 (78%)** |
+| `cases2.json` — 36 commands written before the generator | 18/36 (50%) | 31/36 (86%) | **33/36 (92%)** |
+| Trainer's validation split (600 template examples) | — | 538/600 | **563/600** |
 
-Mean latency in Node's WASM runtime is ~0.6 s per command for both.
+`cases3` and `cases2` have informed the training templates; `cases4` was
+written afterwards and checked against the training queries for overlap.
+Mean latency in Node's WASM runtime is ~0.55 s per command.
 
 Remaining misses are mostly synonyms with no literal evidence for an enum
-value ("freeze time" → `pause`), which the engine's grounding gate withholds
-into `suppressed_calls` even when the call is right, and phrasings far from
-the templates ("closer", "normal speed").
+value ("freeze time" → `pause`, "closer" → zoom `in`), which the engine's
+grounding gate withholds into `suppressed_calls` even when the call is right.
+
+The first fine-tune (5-tool training) is at revision
+`8fc6bd97af258907a65cebecf9f95b2211b4d901`.
 
 ## Training
 
-- 6,000 synthetic examples from templates (`train/gen_data.py`), each shown
-  with a 5-tool subset that includes near-miss distractors, ~8% off-topic
-  refusals and ~15% two-call requests. Arguments are always spans of the request.
-- `needle finetune --epochs 3 --batch-size 8 --max-len 768`, LoRA rank 16 on
-  the attention projections, base frozen; RTX 4060 (8 GB).
+- 6,000 synthetic examples from templates (`train/gen_data.py --all-tools`),
+  each shown with all 15 tools, ~8% off-topic refusals and ~15% two-call
+  requests. Arguments are always spans of the request.
+- `needle finetune --epochs 3 --batch-size 4 --max-len 1280`, LoRA rank 16 on
+  the attention projections, base frozen; RTX 4060 (8 GB), about 2 hours.
+  (15-tool examples run 1,130–1,233 tokens; the trainer truncates silently, so
+  `--max-len` must cover the longest.)
 - `needle build --lora ...` merges the adapter and exports at 4 bits.
 
 ## Limitations
@@ -68,7 +74,7 @@ the templates ("closer", "normal speed").
   probability, not calibrated.
 - The dropped head also removes the embedding readout: `needle_embed` returns
   an error, and with more than five tools the engine can't do tool retrieval,
-  so the model sees every declared tool. It was trained on 5-tool subsets.
+  so the model sees every declared tool.
 - Training data is template-generated, so phrasing far from the templates
   may still fail.
 - Like the base model, it knows nothing about the sky itself: it maps words to

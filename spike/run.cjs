@@ -4,28 +4,13 @@ const fs = require("node:fs");
 const path = require("node:path");
 
 const { VENDOR, dateFact, loadEngine } = require("./engine.cjs");
+const { caseMatches } = require("./common.mjs");
 
 const args = process.argv.slice(2);
 const verbose = args.includes("--verbose");
 const sysIdx = args.indexOf("--system");
 const SYSTEM_BASE = sysIdx >= 0 ? args[sysIdx + 1]
   : "app: planetarium";
-
-function argMatches(want, got) {
-  if (got === undefined) return false;
-  if (typeof want === "string") {
-    const g = String(got).toLowerCase();
-    return want.toLowerCase().split("|").some((w) => g.includes(w) || w.includes(g) && g.length > 2);
-  }
-  if (typeof want === "number") return Number(got) === want;
-  return got === want;
-}
-
-function callMatches(want, got) {
-  if (!got || got.name !== want.name) return false;
-  const a = got.arguments || {};
-  return Object.entries(want.args).every(([k, v]) => argMatches(v, a[k]));
-}
 
 (async () => {
   const opt = (name, def) => { const i = args.indexOf(name); return i >= 0 ? args[i + 1] : def; };
@@ -65,9 +50,7 @@ function callMatches(want, got) {
     const ms = performance.now() - t0;
     totalMs += ms;
     const calls = r.function_calls || [];
-    // order-insensitive, per the Needle test-suite convention; "alt" lists other acceptable answers
-    const okFor = (want) => calls.length === want.length && want.every((w) => calls.some((k) => callMatches(w, k)));
-    const ok = [c.want, ...(c.alt || [])].some(okFor);
+    const ok = caseMatches(c, calls);
     if (ok) pass++;
     rows.push({ ok, ms, q: c.q, calls, conf: r.confidence, r });
     const callStr = calls.map((k) => `${k.name}(${JSON.stringify(k.arguments)})`).join(" ; ") || "(none)";

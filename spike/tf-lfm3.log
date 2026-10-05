@@ -1,0 +1,83 @@
+LiquidAI/LFM2.5-350M-ONNX (q4) ready in 584 ms
+PASS  2195ms  can you bring up Jupiter
+      -> show_object({"name":"Jupiter"})
+PASS  1969ms  I want to see the Crab Nebula
+      -> show_object({"name":"Crab Nebula"})
+PASS  1890ms  where is Polaris
+      -> show_object({"name":"Polaris"})
+FAIL  1958ms  point the view at Cassiopeia please
+      -> set_view({"view":"whole sky"})
+PASS  1948ms  go to M13
+      -> show_object({"name":"M13"})
+FAIL  2035ms  lock onto Mars and follow it
+      -> set_location({"place":"Mars"})
+PASS  1902ms  follow Venus
+      -> follow_object({"name":"Venus"})
+PASS  2347ms  I'm in Reykjavik
+      -> set_location({"place":"Reykjavik"})
+PASS  2307ms  show the sky over Cape Town
+      -> set_location({"place":"Cape Town"})
+PASS  2121ms  change my location to Denver Colorado
+      -> set_location({"place":"Denver Colorado"})
+PASS  2358ms  what did the sky look like on March 3 1990 at 8pm
+      -> set_date_time({"date":"1990-03-03","time":"20:00"})
+FAIL  2036ms  jump to 2030-05-17 at 23:15
+      -> set_time_speed({"speed":"pause","backwards":false})
+FAIL  2041ms  return to the current time
+      -> set_time_speed({"speed":"real time"})
+PASS  2231ms  make time go a minute per second
+      -> set_time_speed({"speed":"minute per second"})
+PASS  2091ms  freeze time
+      -> set_time_speed({"speed":"pause"})
+FAIL  2038ms  normal speed please
+      -> set_time_speed({"speed":"pause"})
+FAIL  2018ms  rewind at an hour per second
+      -> set_time_speed({"speed":"hour per second"})
+PASS  1932ms  closer
+      -> zoom({"direction":"in"})
+FAIL  1980ms  pull back a bit
+      -> set_location({"place":"Earth"})
+PASS  2033ms  telescope view
+      -> set_view({"view":"telescope"})
+FAIL  1928ms  show me what I'd see with just my eyes
+      -> show_object({"name":""})
+FAIL  2414ms  turn around and face south
+      -> set_time_speed({"speed":"pause","backwards":false}) ; look_toward({"direction":"south"})
+PASS  1955ms  look northwest
+      -> look_toward({"direction":"northwest"})
+PASS  2036ms  show the ecliptic
+      -> show_overlay({"overlay":"ecliptic"})
+FAIL  2029ms  put the planet names on
+      -> list_visible({"kind":"planets","count":5})
+PASS  2076ms  remove the constellation lines
+      -> hide_overlay({"overlay":"constellation lines"})
+PASS  2010ms  turn off the horizon
+      -> hide_overlay({"overlay":"horizon"})
+PASS  1947ms  plot the moon's path for 30 days
+      -> show_path({"name":"the moon","days":30})
+PASS  1984ms  trace Jupiter's motion over 365 days
+      -> show_path({"name":"Jupiter","days":365})
+PASS  1893ms  what is Sirius
+      -> object_info({"name":"Sirius"})
+PASS  1979ms  give me some facts about the Ring Nebula
+      -> object_info({"name":"Ring Nebula"})
+FAIL  2237ms  what time does Saturn rise
+      -> set_date_time({"date":"2026-10-04","time":"15:08"})
+FAIL  2185ms  when is sunset
+      -> set_date_time({"date":"2026-10-04","time":"18:00"})
+PASS  1903ms  what galaxies can I see tonight
+      -> list_visible({"kind":"galaxies","count":10})
+PASS  1820ms  name 3 visible clusters
+      -> list_visible({"kind":"clusters","count":3})
+FAIL  1726ms  view from Paris and point at Venus
+      -> set_location({"place":"Paris"})
+PASS  2009ms  hide the grid and show the constellation lines
+      -> hide_overlay({"overlay":"grid"}) ; show_overlay({"overlay":"constellation lines"})
+PASS  2655ms  set an alarm for 7am
+      -> (none)
+FAIL  1731ms  how tall is the Eiffel Tower
+      -> object_info({"name":"Eiffel Tower"})
+PASS  2791ms  play some music
+      -> (none)
+
+26/40 passed; mean latency 2068 ms (prompt ~undefined tokens)

@@ -1,0 +1,105 @@
+onnx-community/functiongemma-270m-it-ONNX (q4) ready in 2011 ms
+FAIL  3466ms  show me Saturn
+      -> show_path({"name":"Saturn"})
+FAIL  4452ms  where's Orion?
+      -> (none)
+      raw: "I need to know the specific location or details for \"where\" to help with searching. Could you please specify the name or coordinates of Orion?<end_of_turn>"
+FAIL  3383ms  take me to the Andromeda galaxy
+      -> (none)
+      raw: "<start_function_call>error:Error calling function \"set_date_time\"\n<end_of_turn>"
+FAIL  7221ms  center on M42
+      -> (none)
+      raw: "I apologize for any inconvenience. However, I can only use the available tools for date and time management, such as showing the sky, tracking, and setting the time. I cannot perform complex geographical or astronomical calculations such as finding specific constellations or M42's coordinates. Therefore, I cannot assist with this task.<end_of_turn>"
+FAIL  7288ms  find Betelgeuse for me
+      -> (none)
+      raw: "I apologize for any inconvenience. I cannot directly search for and detail specific astronomical data like \"Betelgeuse\" using the available tools. My current capabilities are limited to assisting with date and time management, mapping, and tracking tasks using predefined functions. I cannot perform complex astronomical searches or details about constellations or planets. Therefore, I cannot complete this task.<end_of_turn>"
+FAIL  4279ms  track the moon
+      -> (none)
+      raw: "I can help with tracking and moving objects using the available tools. To best assist you, could you please specify the type of object you wish to track?<end_of_turn>"
+FAIL  2269ms  keep Jupiter in the middle of the screen
+      -> (none)
+      raw: "<start_function_call>}\";<end_of_turn>"
+FAIL 11259ms  what does the sky look like from Tokyo
+      -> (none)
+      raw: "Okay, let's explore the sky for Tokyo! Here are some landmarks that capture the essence of the city:\n\n*   **Venus:** A star, a star, a star, a star, a star, a star, a star, a star, a star, a star, a star, a star, a star, a star, a star, a star, a star, a star, a star, a star, a star, a star, a star, a star, a star, a star, a star, a star, a star, a star, a star, a star, a star,"
+FAIL  9107ms  move me to Sydney Australia
+      -> (none)
+      raw: "I cannot assist with planning or recommendations for travel due to the following limitations: I cannot \"move me\" or \"explore\" in the way a physical object requires. My current capabilities are limited to assisting with specific, predefined, and structured data such as date, time, location, etc. I cannot perform complex tasks like fetching geographical details or navigating complex environments like cities or geographical locations. Therefore, I cannot fulfill this request with the given parameters.<end_of_turn>"
+FAIL  2776ms  go to the south pole
+      -> (none)
+      raw: "<start_function_call>response:Go to the south pole<end_of_turn>"
+FAIL  2418ms  set the time to midnight on new year's eve 2026
+      -> (none)
+      raw: "<start_function_call>}\";<end_of_turn>"
+FAIL  2247ms  back to the present
+      -> (none)
+      raw: "<start_function_call>}\";<end_of_turn>"
+FAIL  3511ms  show the sky on July 4 2027 at 9pm
+      -> (none)
+      raw: "<start_function_call>[]}<end_function_call><start_function_call>watch_nowが必要です。\n<start_function_call>}\";READ_ME_ME_ME_Questions{}<end_function_call><start_function_response>"
+FAIL  2213ms  speed up time to an hour per second
+      -> (none)
+      raw: "<start_function_call>}\";<end_of_turn>"
+FAIL  2116ms  pause the clock
+      -> (none)
+      raw: "<start_function_call>}\";<end_of_turn>"
+FAIL  2790ms  run time backwards a day every second
+      -> (none)
+      raw: "<start_function_call>지털 văe sky at a date and time.<end_of_turn>"
+FAIL  2298ms  zoom in
+      -> (none)
+      raw: "<start_function_call>}\";<end_of_turn>"
+FAIL  5210ms  zoom out to see the whole sky
+      -> (none)
+      raw: "<start_function_call>지털: {\"direction\": \"out\", \"name\": \"zoom\", \"type\": \"OBJECT\"}<end_function_call><start_function_call>delayed: {\"direction\": \"north\", \"name\": \"zoom\", \"type\": \"OBJECT\"}<end_function_call><start_function_response>"
+FAIL  5366ms  give me a binocular view
+      -> set_date_time({"date":"2026-10-04 Sun 15:14","time":"24-hour HH:MM"})
+FAIL  3876ms  face east
+      -> (none)
+      raw: "<start_function_call> pessoais, I want to focus on the Moon. I recommend looking straight ahead for a clear view.<end_of_turn>"
+FAIL  2333ms  look straight up
+      -> (none)
+      raw: "<start_function_call>}\";<end_of_turn>"
+FAIL  2969ms  turn on constellation lines
+      -> (none)
+      raw: "<start_function_call>지털 nút (ON) mode to turn on constellation lines for you.<end_of_turn>"
+FAIL  2837ms  hide the grid
+      -> hide_overlay({})
+FAIL  5923ms  get rid of the atmosphere
+      -> (none)
+      raw: "<start_function_call> pessoais data: I cannot retrieve the requested information regarding the \"personalities\" of planets or the atmosphere using the available tools. My current capabilities are limited to assisting with date and time management, location tracking, and visual display tasks. Therefore, I cannot fulfill this request.<end_of_turn>"
+FAIL  2278ms  label the stars
+      -> (none)
+      raw: "<start_function_call>}\";<end_of_turn>"
+FAIL 10897ms  draw Mars's path over the next 90 days
+      -> (none)
+      raw: "<start_function_call>[]}<end_function_call><start_function_call>下がりのための、90日間の最短の経路を以下にしたものです。\n\nここでは、3つの主要な要素を考慮しました。\n\n1.  **3つの主要な要素**：\n    *   **3つの主要な要素**：\n    *   **3つの主要な要素**：\n    *   **3つの主要な要素**：\n\n2.  **3つの主要な要素**：\n    *   **3つの主要な要素**：\n    *   **3つの主要な要素**：\n\n3.  **3つの主要な要素**："
+FAIL  3743ms  how far away is Vega?
+      -> (none)
+      raw: "I can calculate distances using the Earth's nearest known star. However, I cannot provide precise measurements using the available tools.<end_of_turn>"
+FAIL  3925ms  tell me about the Pleiades
+      -> (none)
+      raw: "The Pleiades is a constellation famous for its 17 points. It includes planets, stars, constellations, and galaxies.<end_of_turn>"
+FAIL  6214ms  when does the moon rise tonight
+      -> (none)
+      raw: "I cannot provide real-time weather updates for nighttime conditions. My current capabilities are limited to assisting with specific, predefined tool functionalities like date and time management. I cannot perform complex atmospheric analysis, predict weather patterns, or track celestial movements. Therefore, I cannot confirm the moon rising tonight.<end_of_turn>"
+FAIL  2878ms  when will Venus set?
+      -> (none)
+      raw: "Time to set the sky at a date and time.<end_of_turn>"
+FAIL  4761ms  which planets are up right now
+      -> (none)
+      raw: "There are many planets in the sky, such as Jupiter, Mars, Venus, etc. I can also show you constellations, star names, and galaxy names for your day.<end_of_turn>"
+FAIL  2482ms  list the five brightest stars visible
+      -> (none)
+      raw: "<start_function_call>}\";<end_of_turn>"
+FAIL  3030ms  show me Saturn from Tokyo
+      -> follow_object({"name":"Saturn"})
+FAIL 11218ms  turn on constellation names and zoom out
+      -> (none)
+      raw: "<start_function_call>}\";arrows\n<start_function_call>arrows\n<start_function_call>arrows\n<start_function_call>arrows\n<start_function_call>arrows\n<start_function_call>arrows\n<start_function_call>arrows\n<start_function_call>arrows\n<start_function_call>arrows\n<start_function_call>arrows\n<start_function_call>arrows\n<start_function_call>arrows\n<start_function_call>arrows\n<start_function_call>arrows\n<start_function_call>arrows\n<start_function_call>arrows\n<start_function_call>arrows\n<start_function_call>arrows\n<start_function_call>arrows\n<start_function_call>arrows\n<start_function_call>arrows\n<start_function_call>arrows\n<start_function_call>arrows\n<start_function_call>arrows\n<start_function_call>arrows\n<start_function_call>arrows\n<start_function_call>arrows\n<start_function_call>arrows\n<start_function_call>arrows\n<start_function_call>arrows\n<start_function_call>arrows\n<start_function_call>arrows\n<start_function_call>arrows\n<start_function_call>arrows\n<start_function_call>arrows\n<start_function_call>arrows\n<start_function_call>arrows\n<start_function_call>arrows\n<start_function_call>arrows\n<start_function_call>arrows\n<start_function_call>arrows\n<start_function_call>arrows\n<start_function_call>"
+PASS  4948ms  what's the weather in Paris
+      -> (none)
+PASS 11337ms  write me a poem about stars
+      -> (none)
+
+2/36 passed; mean latency 4703 ms (prompt ~undefined tokens)

@@ -1,13 +1,18 @@
 import { Sky } from "./sky.js";
 import { Resolver, makeExecutors, fmtLocal } from "./tools.js";
-import { NeedleModel, dateFact } from "./needle.js";
+import { NeedleModel, LfmModel, hasWebGPU, dateFact } from "./needle.js";
+import { LFM_SYSTEM } from "./lfm.js";
 import { Recorder } from "./voice.js";
 import { renderSpans, renderCalls, renderSpeed, renderWhy, renderHistory, showLoad, ToolMap } from "./inspector.js";
 
 // Weights are pinned to a Hugging Face revision so the demo can't drift under us.
 const NEEDLE3 = "https://huggingface.co/Cactus-Compute/needle3/resolve/c7c415a3d1b3d929014bc6e866d51ebb971f7089/needle3.cact";
 const WHISTLE = "https://huggingface.co/Cactus-Compute/whistle/resolve/b358ddadd89b7a713b5aa131f23032d3cca1b251/whistle.cact";
-const TUNED = "https://huggingface.co/mvandewettering/needle3-planetarium/resolve/8fc6bd97af258907a65cebecf9f95b2211b4d901/needle3-planetarium.cact";
+const TUNED = "https://huggingface.co/mvandewettering/needle3-planetarium/resolve/97a552d55eb22748893525db0cfe11be4626c474/needle3-planetarium.cact";
+const LFM_REPO = "mvandewettering/lfm2.5-350m-planetarium-ONNX";
+const LFM_REV = "1ad8865686ed0e1b92bfe836954e63ca11be2705";
+
+const LABELS = { base: "Needle 3", tuned: "Needle 3 fine-tuned", lfm: "LFM2.5 fine-tuned" };
 
 const EXAMPLES = [
   "show me Saturn", "view the sky from Tokyo", "speed up time to an hour per second", "draw Mars's path over 120 days",
@@ -127,8 +132,8 @@ async function main() {
 
   // ---- models ----
   const system = `${dateFact()}; app: planetarium`;
-  const status = { base: "Needle 3 base: waiting", tuned: "", whistle: "" };
-  const paint = () => showLoad([status.base, status.tuned, status.whistle].filter(Boolean).join("<br>"));
+  const status = { base: "Needle 3 base: waiting", tuned: "", lfm: "", whistle: "" };
+  const paint = () => showLoad([status.base, status.tuned, status.lfm, status.whistle].filter(Boolean).join("<br>"));
 
   const base = new NeedleModel("Base", [NEEDLE3], {
     onProgress: (p) => { if (p.url === NEEDLE3) { status.base = progressHtml("Needle 3 (35 MB)", p); paint(); } },
@@ -165,12 +170,13 @@ async function main() {
   }
 
   async function run(text) {
-    const which = state.mode === "both" ? ["base", "tuned"] : [state.mode];
+    // Compare pits the two fine-tunes against each other once LFM is loaded
+    const which = state.mode === "both" ? (state.models.lfm ? ["tuned", "lfm"] : ["base", "tuned"]) : [state.mode];
     const runs = [];
     for (const key of which) {
       const m = state.models[key];
       const { result, ms } = await m.ask(text);
-      runs.push({ key, label: key === "base" ? "Base Needle 3" : "Fine-tuned", result, ms });
+      runs.push({ key, label: LABELS[key], result, ms });
     }
     const primary = runs[runs.length - 1];
     const calls = [...(primary.result.function_calls || [])].sort((a, b) => (ORDER[a.name] ?? 5) - (ORDER[b.name] ?? 5));
@@ -180,9 +186,9 @@ async function main() {
     });
     primary.executed = true;
 
-    $("toolmap-caption").textContent = primary.key === "tuned"
-      ? "Each star is a tool; your command lands among the nearest. The fine-tuned build has no retrieval head, so it chose from all 15 tools — the lines show the 5 the base model would have offered."
-      : "Each star is a tool. Your command lands among them; lines mark the five closest — the only tools the model is allowed to choose from.";
+    $("toolmap-caption").textContent = primary.key === "base"
+      ? "Each star is a tool. Your command lands among them; lines mark the five closest — the only tools the model is allowed to choose from."
+      : `Each star is a tool; your command lands among the nearest. ${LABELS[primary.key]} has no retrieval step, so it chose from all 15 tools — the lines show the 5 base Needle would have offered.`;
     renderSpans(text, primary.result);
     renderCalls(runs);
     renderSpeed(primary);
@@ -258,8 +264,25 @@ async function main() {
     state.models.tuned = tuned;
     status.tuned = "Fine-tuned model ready"; paint();
     tunedBtns.forEach((b) => { b.disabled = false; });
-    document.querySelector('#model-switch [data-model="tuned"]').click();
+    if (!state.models.lfm) document.querySelector('#model-switch [data-model="tuned"]').click();
   })().catch((e) => { status.tuned = `Fine-tuned model failed: ${e.message}`; paint(); });
+
+  // LFM2.5 is the most accurate and, on WebGPU, the fastest — but a 289 MB download,
+  // so it only loads where WebGPU works and the browser hasn't asked to save data.
+  const lfmBtn = document.querySelector('#model-switch [data-model="lfm"]');
+  (async () => {
+    if (navigator.connection?.saveData) { status.lfm = "LFM2.5: skipped (data saver is on)"; paint(); return; }
+    if (!await hasWebGPU()) { status.lfm = "LFM2.5: needs WebGPU, which this browser doesn't offer"; paint(); return; }
+    const lfm = new LfmModel("LFM2.5", {
+      onProgress: (p) => { status.lfm = progressHtml("LFM2.5 fine-tuned (289 MB)", p); paint(); },
+    });
+    status.lfm = "LFM2.5 fine-tuned: starting…"; paint();
+    const { prefixTokens, prefixMs } = await lfm.load(LFM_REPO, LFM_REV, `${LFM_SYSTEM}\n${dateFact()}`, tools);
+    state.models.lfm = lfm;
+    status.lfm = `LFM2.5 ready on WebGPU — ${prefixTokens} prompt tokens cached in ${(prefixMs / 1000).toFixed(1)} s`; paint();
+    lfmBtn.disabled = false;
+    lfmBtn.click();
+  })().catch((e) => { status.lfm = `LFM2.5 failed: ${e.message}`; paint(); });
 
   function setupMic(model) {
     const mic = $("mic");

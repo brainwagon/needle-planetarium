@@ -1,0 +1,123 @@
+engine + weights ready in 9026 ms; static prefix 1109 tokens
+PASS   513ms conf=1.00  hey can you find Arcturus
+      -> show_object({"name":"Arcturus"})
+PASS   538ms conf=1.00  um show me the orion nebula
+      -> show_object({"name":"the orion nebula"})
+PASS   677ms conf=1.00  I'd like to look at the Whirlpool Galaxy
+      -> show_object({"name":"the Whirlpool Galaxy"})
+PASS   471ms conf=0.94  aim at Aldebaran
+      -> show_object({"name":"Aldebaran"})
+FAIL   522ms conf=0.69  where can I find the big dipper
+      -> (none)  [suppressed: [{"name":"look_toward","arguments":{"direction":"north"}}]]
+PASS   494ms conf=0.99  could you put Uranus on the screen
+      -> show_object({"name":"Uranus"})
+PASS   415ms conf=0.99  M57 please
+      -> show_object({"name":"M57"})
+PASS   571ms conf=0.63  navigate to the Lagoon Nebula
+      -> show_object({"name":"the Lagoon Nebula"})
+FAIL   424ms conf=0.98  stay locked on the moon
+      -> reset_to_now({})
+FAIL   424ms conf=0.80  keep tracking Saturn as time passes
+      -> reset_to_now({})
+PASS   465ms conf=1.00  can the view follow Mercury
+      -> follow_object({"name":"Mercury"})
+PASS   534ms conf=1.00  pretend I'm standing in Nairobi
+      -> set_location({"place":"Nairobi"})
+PASS   535ms conf=1.00  switch to Anchorage Alaska
+      -> set_location({"place":"Anchorage Alaska"})
+PASS   561ms conf=0.99  how does the sky look from Buenos Aires
+      -> set_location({"place":"Buenos Aires"})
+FAIL   470ms conf=0.99  set my position to the north pole
+      -> zoom({"direction":"in"})
+PASS   830ms conf=0.95  show me the sky on December 25 2031 at 6 in the evening
+      -> set_date_time({"date":"2031-12-25","time":"18:00"})
+FAIL   692ms conf=0.59  go to 1969-07-20 20:17
+      -> (none)  [suppressed: [{"name":"set_time_speed","arguments":{"speed":"pause","backwards":false}}]]
+PASS   793ms conf=0.77  what will the sky look like on the 1st of January 2040 at noon
+      -> set_date_time({"date":"2040-01-01","time":"12:00"})
+PASS   703ms conf=0.50  set the date to August 12 2028 at 2am
+      -> set_date_time({"date":"2028-08-12","time":"02:00"})
+PASS   381ms conf=1.00  take me back to right now
+      -> reset_to_now({})
+PASS   642ms conf=1.00  undo all the time travel and go back to today
+      -> reset_to_now({})
+FAIL   377ms conf=1.00  hold time still for a sec
+      -> reset_to_now({})
+PASS   546ms conf=1.00  let time run at a day per second
+      -> set_time_speed({"speed":"day per second"})
+FAIL   593ms conf=1.00  go back in time at a minute per second
+      -> set_time_speed({"speed":"minute per second"})
+PASS   593ms conf=1.00  resume real time
+      -> set_time_speed({"speed":"real time","backwards":true})
+PASS   713ms conf=0.77  make the hours fly by, one hour each second
+      -> set_time_speed({"speed":"hour per second","backwards":true})
+PASS   419ms conf=1.00  zoom in a little
+      -> zoom({"direction":"in"})
+PASS   401ms conf=1.00  zoom way out
+      -> zoom({"direction":"out"})
+PASS   542ms conf=1.00  switch to binoculars
+      -> set_view({"view":"binoculars"})
+FAIL   602ms conf=1.00  I want to see everything from horizon to horizon
+      -> show_overlay({"overlay":"horizon"})
+PASS   565ms conf=0.93  what would a telescope show
+      -> set_view({"view":"telescope"})
+PASS   497ms conf=0.97  spin me around to the west
+      -> look_toward({"direction":"west"})
+PASS   614ms conf=0.87  look toward the northeast horizon
+      -> look_toward({"direction":"northeast"})
+FAIL   498ms conf=0.66  point the camera straight overhead
+      -> (none)  [suppressed: [{"name":"show_overlay","arguments":{"overlay":"atmosphere"}}]]
+PASS   530ms conf=1.00  show me the coordinate grid
+      -> show_overlay({"overlay":"grid"})
+PASS   629ms conf=1.00  mark the deep sky objects on the map
+      -> show_overlay({"overlay":"deep sky objects"})
+PASS   451ms conf=0.94  label the planets
+      -> show_overlay({"overlay":"planet names"})
+PASS   514ms conf=1.00  hide star names
+      -> hide_overlay({"overlay":"star names"})
+FAIL   570ms conf=0.92  make the sky black, no atmosphere glow
+      -> (none)  [suppressed: [{"name":"set_view","arguments":{"view":"naked eye"}}]]
+PASS   658ms conf=0.97  i don't want to see the ecliptic anymore
+      -> hide_overlay({"overlay":"ecliptic"})
+FAIL   797ms conf=0.31  show where Venus goes over the next 60 days
+      -> list_visible({"kind":"planets","count":50}) ; show_path({"name":"Venus","days":60})
+FAIL   595ms conf=0.98  draw Saturn's path for 1000 days
+      -> show_path({"name":"Saturn"})
+PASS   472ms conf=0.99  how bright is Rigel
+      -> object_info({"name":"Rigel"})
+PASS   445ms conf=1.00  what kind of object is M87
+      -> object_info({"name":"M87"})
+PASS   479ms conf=1.00  tell me something about Neptune
+      -> object_info({"name":"Neptune"})
+PASS   448ms conf=0.93  when's the sun coming up
+      -> rise_set_times({"name":"the sun"})
+PASS   512ms conf=0.96  when does Jupiter go down tonight
+      -> rise_set_times({"name":"Jupiter"})
+FAIL   511ms conf=0.60  will the moon be up at all today
+      -> list_visible({"kind":"planets"})
+PASS   564ms conf=1.00  what constellations are up
+      -> list_visible({"kind":"constellations"})
+PASS   630ms conf=1.00  show me a list of nebulae I can see
+      -> list_visible({"kind":"nebulae"})
+PASS   625ms conf=1.00  give me ten visible stars
+      -> list_visible({"kind":"stars","count":10})
+PASS   744ms conf=0.95  go to Rome and face south
+      -> set_location({"place":"Rome"}) ; look_toward({"direction":"south"})
+PASS   988ms conf=0.62  turn on the grid and the planet names
+      -> show_overlay({"overlay":"grid"}) ; show_overlay({"overlay":"planet names"})
+PASS   968ms conf=0.98  set the date to March 20 2030 at 9pm and show me Mars
+      -> set_date_time({"date":"2030-03-20","time":"21:00"}) ; show_object({"name":"Mars"})
+PASS   860ms conf=1.00  follow the moon and speed time up to an hour per second
+      -> follow_object({"name":"the moon"}) ; set_time_speed({"speed":"hour per second"})
+FAIL   459ms conf=0.83  what's 17 times 23
+      -> set_date_time({"time":"23:00"})
+PASS   258ms conf=1.00  book me a table for dinner
+      -> (none)
+PASS   256ms conf=1.00  who won the world series
+      -> (none)
+PASS   250ms conf=1.00  send a text to my mom
+      -> (none)
+PASS   304ms conf=1.00  what's a good recipe for banana bread
+      -> (none)
+
+46/60 passed; mean latency 552 ms
